@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alisha Jordan — UX Researcher &amp; Designer</title>
+<meta name="description" content="Alisha Jordan is a UX researcher focused on accessibility. Case studies in usability testing, contextual inquiry and cognitive walkthrough.">
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="index.html">
+      <img src="assets/img/allynne-logo.png" alt="" width="34" aria-hidden="true">
+      Alisha Jordan
+    </a>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <span class="visually-hidden">Menu</span>
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+        <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+
+    <nav aria-label="Main">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html" aria-current="page"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">Home</span><span class="nav__txt nav__txt--in" aria-hidden="true">Home</span></a></li>
+        <li><a href="work.html"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">Work</span><span class="nav__txt nav__txt--in" aria-hidden="true">Work</span></a></li>
+        <li><a href="about.html"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">About</span><span class="nav__txt nav__txt--in" aria-hidden="true">About</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ------------------------------------------------------------ Hero -->
+  <section class="hero hero--feature field">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="wrap hero__grid">
+      <div>
+        <p class="hero__kicker rise" style="--d:.05s">UX Researcher &amp; Designer &middot; Accessibility</p>
+        <h1 class="rise" style="--d:.14s">Alisha&nbsp;Jordan</h1>
+        <p class="hero__lede rise" style="--d:.26s">
+          I spent a year as a reporter, interviewing strangers on deadline and
+          getting the story straight. Now I do the same thing for products:
+          talk to the people using them, then write down exactly
+          <span class="accent">where they get stuck</span>. From there I design
+          the fix and test whether it actually worked. I just finished my
+          master&rsquo;s in HCI at DePaul, and accessibility is the part I care
+          most about getting right.
+        </p>
+        <div class="hero__actions rise" style="--d:.38s">
+          <a class="btn" href="work.html">See my work <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--ghost" href="about.html">About me</a>
+        </div>
+      </div>
+
+      <div class="arch hero__portrait rise" style="--d:.32s">
+        <!-- Professional photos arriving end of August; swap the <img> in here. -->
+        <p>Portrait<br><span style="color:var(--ink-faint)">photo coming soon</span></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ---------------------------------------------------- Featured work -->
+  <section class="section section--alt section--lift">
+    <div class="wrap">
+      <p class="eyebrow">Selected work</p>
+      <h2>Three projects, three different questions</h2>
+      <p class="prose" style="margin-top:var(--sp-3); color:var(--ink-soft);">
+        Each of these started with people rather than pixels. Two are graduate team
+        projects where I led the research, one I ran solo end to end.
+      </p>
+
+      <div class="cards cards--3" style="margin-top:var(--sp-6);">
+
+        <article class="card reveal">
+          <div class="card__media">
+            <img src="assets/img/finity/card-thumb.jpg" alt="Three Finity screens: the dashboard, the savings goals list, and a goal confirmation." width="1200" height="750">
+          </div>
+          <div class="card__body">
+            <p class="card__meta">Usability testing</p>
+            <h3><a href="work/finity.html">Finity</a></h3>
+            <p>
+              A personal finance app for young professionals. I ran moderated
+              sessions with four participants across four task flows, then turned
+              what went wrong into a prioritized set of changes.
+            </p>
+            <p class="card__foot">Read the case study &rarr;</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__media">
+            <img src="assets/img/shein/walkthrough-2.jpg" alt="Annotated screenshots of the Shein search results and filter panel." width="1600" height="900">
+          </div>
+          <div class="card__body">
+            <p class="card__meta">Cognitive walkthrough</p>
+            <h3><a href="work/shein.html">Shein</a></h3>
+            <p>
+              A solo evaluation of one of the most cluttered storefronts on the
+              web. Three tasks, every step measured against Lewis and Rieman&rsquo;s
+              four questions, problems rated by severity.
+            </p>
+            <p class="card__foot">Read the case study &rarr;</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__media">
+            <img src="assets/img/visitwise/card-thumb.png" alt="The VisitWise welcome screen and home screen showing an upcoming visit." loading="lazy" width="894" height="558">
+          </div>
+          <div class="card__body">
+            <p class="card__meta">Research &amp; design</p>
+            <h3><a href="work/visitwise.html">VisitWise</a></h3>
+            <p>
+              A mobile app that helps patients and caregivers walk into a medical
+              appointment prepared. My graduate capstone: 12 survey responses, a
+              heuristic review, and the usability score that told the truth.
+            </p>
+            <p class="card__foot">Read the case study &rarr;</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------ Design system -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Design system</p>
+      <h2>Allynne</h2>
+      <p class="prose" style="margin-top:var(--sp-3); color:var(--ink-soft);">
+        My own brand, designed end to end: palette, type, icon set, buttons,
+        navigation and card components, built as a proper kit rather than a
+        one-off logo. The site you are reading now runs on it.
+      </p>
+
+      <div class="ds-strip">
+        <img src="assets/img/allynne/palette.jpg" alt="The Allynne color palette: olive and magenta with tint steps." loading="lazy" width="1400" height="1171">
+        <img src="assets/img/allynne/ui-kit.jpg" alt="The Allynne UI kit sheet showing components laid out together." loading="lazy" width="1400" height="1168">
+        <img src="assets/img/allynne/icons.jpg" alt="The Allynne icon set drawn on a consistent grid." loading="lazy" width="948" height="1216">
+      </div>
+
+      <p style="margin-top:var(--sp-5)">
+        <a class="btn btn--ghost" href="work.html#allynne">See the full kit <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      </p>
+
+      <p style="margin-top:var(--sp-4)">
+        <a class="link-arrow" href="https://www.figma.com/design/tZJd2OL3poO8KUGOHp6q8k/HCI-472-_-Design-Phase-1?node-id=2003-410&amp;t=NNsHf7MEK6D7reAD-1" rel="noopener">
+          Open the design system in Figma <span aria-hidden="true">&rarr;</span>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------- Methods -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <p class="eyebrow">How I work</p>
+      <h2>Methods I reach for</h2>
+
+      <div class="methods">
+        <div class="method reveal">
+          <h3>Contextual inquiry</h3>
+          <p>Watching people solve the problem their own way, in their own space, before suggesting anything.</p>
+        </div>
+        <div class="method reveal">
+          <h3>Moderated usability testing</h3>
+          <p>Task-based sessions, thinking aloud, satisfaction ratings, and follow-up questions that dig past &ldquo;it was fine&rdquo;.</p>
+        </div>
+        <div class="method reveal">
+          <h3>Cognitive walkthrough</h3>
+          <p>Stepping through a flow as a first-time user would, then rating each breakdown by how badly it hurts.</p>
+        </div>
+        <div class="method reveal">
+          <h3>Accessibility review</h3>
+          <p>Contrast, keyboard paths, and screen reader order. Currently working toward IAAP certification.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ------------------------------------------------------------- Footer -->
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <h2>Let&rsquo;s talk</h2>
+      <p style="color:#D8D8D8; max-width:32rem;">
+        I&rsquo;ve just finished my M.S. in Human-Computer Interaction at DePaul
+        and I&rsquo;m looking for UX research and design roles. If you have something
+        you want understood properly, I&rsquo;d like to hear about it.
+      </p>
+    </div>
+    <div>
+      <ul class="footer__contact">
+        <li><a class="cta cta--primary" href="mailto:aaj4298@gmail.com">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">Email me</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a class="cta" href="https://www.linkedin.com/in/alishajordan326" rel="noopener">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">LinkedIn</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a class="cta" href="assets/docs/alisha-jordan-resume.pdf">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">R&eacute;sum&eacute; (PDF)</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+      </ul>
+      <p class="footer__addr">or write to <a href="mailto:aaj4298@gmail.com">aaj4298@gmail.com</a></p>
+    </div>
+  </div>
+  <div class="wrap footer__note">
+    <span>&copy; 2026 Alisha Jordan</span>
+    <span>Built on the Allynne design system</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
