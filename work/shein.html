@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shein — cognitive walkthrough — Alisha Jordan</title>
+<meta name="description" content="A solo cognitive walkthrough of Shein's desktop storefront: three tasks, sixteen action steps, Lewis and Rieman's four questions, and three problems rated by severity.">
+<link rel="icon" href="../assets/img/favicon.png" type="image/png">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" role="presentation"></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="../index.html">
+      <img src="../assets/img/allynne-logo.png" alt="" width="34" aria-hidden="true">
+      Alisha Jordan
+    </a>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <span class="visually-hidden">Menu</span>
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+        <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+
+    <nav aria-label="Main">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="../index.html"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">Home</span><span class="nav__txt nav__txt--in" aria-hidden="true">Home</span></a></li>
+        <li><a href="../work.html" aria-current="true"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">Work</span><span class="nav__txt nav__txt--in" aria-hidden="true">Work</span></a></li>
+        <li><a href="../about.html"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">About</span><span class="nav__txt nav__txt--in" aria-hidden="true">About</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="case-hero field">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow rise" style="--d:.05s">Case study &middot; Cognitive walkthrough</p>
+      <h1 class="rise" style="--d:.12s">Shein</h1>
+      <p class="lede rise" style="--d:.22s">
+        Six hundred thousand products, a homepage that never stops moving, and a
+        storefront built to keep you scrolling. I walked three ordinary shopping
+        tasks step by step as a first-time user, asked four questions at every
+        step, and then went back a second time because passing everything on the
+        first pass is not a result.
+      </p>
+
+      <dl class="facts rise" style="--d:.3s">
+        <div>
+          <dt>My role</dt>
+          <dd>Solo, start to finish</dd>
+        </div>
+        <div>
+          <dt>Course</dt>
+          <dd>HCI 460</dd>
+        </div>
+        <div>
+          <dt>Method</dt>
+          <dd>Individual cognitive walkthrough, Lewis &amp; Rieman&rsquo;s four questions</dd>
+        </div>
+        <div>
+          <dt>Scope</dt>
+          <dd>3 tasks, 16 action steps, desktop web</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+
+  <section class="section section--lift">
+    <div class="wrap case-layout">
+
+      <aside class="rail" aria-label="On this page">
+        <ol>
+          <li><a href="#site">The site</a></li>
+          <li><a href="#method">The method</a></li>
+          <li><a href="#tasks">The three tasks</a></li>
+          <li><a href="#firstpass">First pass</a></li>
+          <li><a href="#secondpass">Second pass</a></li>
+          <li><a href="#reflection">Looking back</a></li>
+        </ol>
+      </aside>
+
+      <div class="case-body">
+
+        <h2 id="site">The site</h2>
+        <p>
+          Shein sells fast fashion globally on desktop and mobile to tweens, teens
+          and people in their twenties. It carries over 600,000 products, and the
+          interface is built accordingly: pop-ups, banners, badges and rotating
+          promotions, all of it working to keep you moving through the catalog.
+        </p>
+        <p>
+          That density is a deliberate commercial choice, not an accident, which
+          makes it interesting to evaluate. The question is not whether the site is
+          cluttered. It obviously is. The question is whether a first-time shopper
+          can still complete an ordinary task inside the clutter, and where exactly
+          the noise starts costing them.
+        </p>
+
+        <h2 id="method">The method</h2>
+        <p>
+          A cognitive walkthrough simulates a new user. You define the task, write
+          out the happy path, then step through it one action at a time asking
+          Lewis and Rieman&rsquo;s four questions of every step:
+        </p>
+        <ol>
+          <li>Will the user be trying to produce the effect this action has?</li>
+          <li>Will they see the control for it?</li>
+          <li>Once they find it, will they recognize it produces the effect they want?</li>
+          <li>After acting, will they understand the feedback well enough to move on with confidence?</li>
+        </ol>
+        <p>
+          A step only passes if the answer is yes four times. Anything short of that
+          is a place a new user can fall out of the flow. Problems get rated on the
+          standard severity scale:
+        </p>
+
+        <div class="callout">
+          <h3>Severity scale</h3>
+          <p>
+            <strong>0</strong> not a usability problem &middot;
+            <strong>1</strong> cosmetic only &middot;
+            <strong>2</strong> minor usability problem &middot;
+            <strong>3</strong> major usability problem &middot;
+            <strong>4</strong> usability catastrophe
+          </p>
+        </div>
+
+        <h2 id="tasks">The three tasks</h2>
+        <p>
+          Three things a new shopper does in their first visit, each with the happy
+          path written out before I touched the site, so I was measuring the
+          interface rather than my own memory of it.
+        </p>
+
+        <div class="split">
+          <div>
+            <h3>Task 1 &middot; Find a fur coat</h3>
+            <ul>
+              <li>Start at the homepage</li>
+              <li>Find the search bar</li>
+              <li>Type &ldquo;fur coat&rdquo; and submit</li>
+              <li>View results</li>
+              <li>Apply length, color and detail filters</li>
+              <li>Open a coat</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Task 2 &middot; Quick add to cart</h3>
+            <ul>
+              <li>Reach a product listing page</li>
+              <li>Spot the quick add icon</li>
+              <li>Select it</li>
+              <li>Choose color, size, quantity</li>
+              <li>Item lands in the cart</li>
+            </ul>
+          </div>
+        </div>
+        <div class="split" style="margin-top:var(--sp-4)">
+          <div>
+            <h3>Task 3 &middot; Save to wishlist</h3>
+            <ul>
+              <li>Reach a product listing page</li>
+              <li>Open a product</li>
+              <li>Select the heart icon</li>
+              <li>Read the feedback</li>
+            </ul>
+          </div>
+          <div></div>
+        </div>
+
+        <div class="slider">
+          <div class="slider__track">
+            <figure>
+              <img src="../assets/img/shein/walkthrough-4.jpg" alt="Shein homepage, and the same page with the search box open showing autocomplete suggestions for fur coat." loading="lazy" width="1600" height="900">
+              <figcaption>Task 1, steps 1 to 3. Search is where anyone would look for it, and autocomplete does real work.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/shein/walkthrough-2.jpg" alt="Shein search results for fur coat with the full filter rail down the left side." loading="lazy" width="1600" height="900">
+              <figcaption>Steps 4 to 6. The filter rail runs Category, Color, Details, Fabric Elasticity, Fit Type, Length and more.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/shein/walkthrough-3.jpg" alt="Filtered results showing three applied filter chips: Slim Fit, Fuzzy and Black." loading="lazy" width="1600" height="900">
+              <figcaption>Three filters applied. The chips at the top are genuinely well done: labeled, removable, clearable.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/shein/walkthrough-5.jpg" alt="Quick add dialog open over the results grid, showing size options with 20 (4XL) drawn in a dashed outline." loading="lazy" width="1600" height="900">
+              <figcaption>Task 2. The quick add dialog, four prices deep, with one size drawn differently to the rest.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/shein/walkthrough-1.jpg" alt="Shein product page with the heart wishlist icon beside the add to cart button, highlighted before and after selection." loading="lazy" width="1600" height="900">
+              <figcaption>Task 3. The heart fills in on selection, which is the clearest feedback anywhere in the study.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <h2 id="firstpass">First pass: everything passed</h2>
+        <p>
+          All sixteen action steps cleared all four questions. Search was where
+          people expect it, the filters applied instantly, the quick add icon sat on
+          every product tile, and the heart changed color when I saved something.
+          On paper, three clean tasks.
+        </p>
+
+        <div class="callout">
+          <h3>Which is a problem</h3>
+          <p>
+            A walkthrough that finds nothing has usually asked the wrong question. I
+            had evaluated whether the happy path <em>works</em>, and it does. I had
+            not evaluated what it costs to stay on it. So I went back through my own
+            screenshots looking for the places where I had quietly done extra work
+            and not counted it.
+          </p>
+        </div>
+
+        <h2 id="secondpass">Second pass: three problems</h2>
+        <p>
+          Same screens, same tasks, this time rating what I found rather than only
+          asking whether the step could be completed.
+        </p>
+
+        <ul class="findings">
+          <li class="finding finding--3">
+            <p class="finding__sev" aria-hidden="true">3<span>Sev</span></p>
+            <h3>The price is shown four different ways at once</h3>
+            <p>
+              <span class="visually-hidden">Severity 3, major usability problem. </span>
+              One product carries a list price, a struck-through price, a percentage
+              off, a lower &ldquo;price after applying coupons&rdquo;, and a line
+              reading <em>price may vary at checkout based on all items
+              purchased</em>. The single question the page exists to answer is what
+              this costs, and after reading all of it I still could not say. Every
+              step passed, and I still could not answer the question.
+            </p>
+          </li>
+
+          <li class="finding">
+            <p class="finding__sev" aria-hidden="true">2<span>Sev</span></p>
+            <h3>Product names truncate mid-word in the grid</h3>
+            <p>
+              <span class="visually-hidden">Severity 2, minor usability problem. </span>
+              Tiles read &ldquo;Aloruh Wome&hellip;&rdquo;, &ldquo;ROMWE
+              Gothi&hellip;&rdquo;, &ldquo;#6 Bestseller in Sl&hellip;&rdquo;. The
+              badges get the space and the product name loses it, so the grid cannot
+              be scanned. Every comparison costs an extra click, on a results page
+              built for browsing.
+            </p>
+          </li>
+
+          <li class="finding">
+            <p class="finding__sev" aria-hidden="true">2<span>Sev</span></p>
+            <h3>Sold-out sizes are marked by a dashed outline and nothing else</h3>
+            <p>
+              <span class="visually-hidden">Severity 2, minor usability problem. </span>
+              In the quick add dialog, size 20 (4XL) is drawn with a dashed border
+              while the others are solid. No label, no &ldquo;out of stock&rdquo;
+              text, nothing a screen reader would announce. Anyone not picking up
+              that border treatment gets no signal at all, and the largest size in
+              the range is the one carrying it.
+            </p>
+          </li>
+        </ul>
+
+        <div class="quote">
+          <p>The interface never blocked me. It just made me pay attention to the wrong things, and I only noticed on the second pass.</p>
+          <cite>Study notes</cite>
+        </div>
+
+        <h3>What was genuinely good</h3>
+        <p>
+          Worth saying, because a critique that only finds faults is not an
+          evaluation either. The applied-filter chips are excellent: each one is
+          named, each one has its own remove control, and Clear All sits right beside
+          them, so the state of the search is always readable. The heart icon fills
+          in on save, which is unmistakable feedback. Search autocomplete does real
+          work, offering &ldquo;fur coat plus size&rdquo;, &ldquo;fur coat
+          long&rdquo;, &ldquo;fur coat with hood&rdquo; before you finish typing.
+        </p>
+
+        <h2 id="reflection">Looking back</h2>
+        <p>
+          The method did exactly what it says on the tin and no more. Lewis and
+          Rieman&rsquo;s four questions test whether a step can be completed. They do
+          not ask what the step costs, how much noise was waded through, or whether
+          the user finished the task and still could not answer the question they
+          came with.
+        </p>
+        <p>
+          Next time I would run the walkthrough as written, then add a fifth question
+          of my own at every step: <strong>what did this step ask of the user that it
+          did not have to?</strong> That is where all three findings above came from,
+          and none of them showed up in the first pass.
+        </p>
+        <p>
+          I would also pair the walkthrough with two or three real sessions. A
+          walkthrough is me predicting a first-time user, and I have now looked at
+          this site for hours, which makes me the worst possible stand-in for one.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <nav class="pagenav" aria-label="Next case study">
+    <div class="wrap">
+      <a href="visitwise.html">
+        <span>
+          <small>Next case study</small>
+          <strong>VisitWise capstone</strong>
+        </span>
+        <span aria-hidden="true" style="font-size:var(--step-2)">&rarr;</span>
+      </a>
+    </div>
+  </nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <h2>Let&rsquo;s talk</h2>
+      <p style="color:#D8D8D8; max-width:32rem;">
+        I&rsquo;ve just finished my M.S. in Human-Computer Interaction at DePaul
+        and I&rsquo;m looking for UX research and design roles. If you have something
+        you want understood properly, I&rsquo;d like to hear about it.
+      </p>
+    </div>
+    <div>
+      <ul class="footer__contact">
+        <li><a class="cta cta--primary" href="mailto:aaj4298@gmail.com">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">Email me</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a class="cta" href="https://www.linkedin.com/in/alishajordan326" rel="noopener">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">LinkedIn</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a class="cta" href="../assets/docs/alisha-jordan-resume.pdf">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">R&eacute;sum&eacute; (PDF)</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+      </ul>
+      <p class="footer__addr">or write to <a href="mailto:aaj4298@gmail.com">aaj4298@gmail.com</a></p>
+    </div>
+  </div>
+  <div class="wrap footer__note">
+    <span>&copy; 2026 Alisha Jordan</span>
+    <span>Built on the Allynne design system</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

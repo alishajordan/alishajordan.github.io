@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finity — usability testing — Alisha Jordan</title>
+<meta name="description" content="Moderated usability testing on Finity, a personal finance app for young professionals. Four participants, four task flows, and the changes that came out of it.">
+<link rel="icon" href="../assets/img/favicon.png" type="image/png">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" role="presentation"></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="../index.html">
+      <img src="../assets/img/allynne-logo.png" alt="" width="34" aria-hidden="true">
+      Alisha Jordan
+    </a>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <span class="visually-hidden">Menu</span>
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+        <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+
+    <nav aria-label="Main">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="../index.html"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">Home</span><span class="nav__txt nav__txt--in" aria-hidden="true">Home</span></a></li>
+        <li><a href="../work.html" aria-current="true"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">Work</span><span class="nav__txt nav__txt--in" aria-hidden="true">Work</span></a></li>
+        <li><a href="../about.html"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">About</span><span class="nav__txt nav__txt--in" aria-hidden="true">About</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ------------------------------------------------------------- Intro -->
+  <section class="case-hero field">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow rise" style="--d:.05s">Case study &middot; Usability testing</p>
+      <h1 class="rise" style="--d:.12s">Finity</h1>
+      <p class="lede rise" style="--d:.22s">
+        A personal finance app for people juggling more than one stream of income.
+        Our team of four built a mid-fidelity prototype, then we each took a
+        participant through the same four tasks. Sixteen task attempts later we had
+        a list of things to fix, and two of them were about a single word.
+      </p>
+
+      <dl class="facts rise" style="--d:.3s">
+        <div>
+          <dt>My role</dt>
+          <dd>Researcher &amp; interviewer</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Group 9, four graduate students</dd>
+        </div>
+        <div>
+          <dt>Course</dt>
+          <dd>HCI 430</dd>
+        </div>
+        <div>
+          <dt>Methods</dt>
+          <dd>Moderated remote testing, think aloud, satisfaction rating</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+
+  <section class="section section--lift">
+    <div class="wrap case-layout">
+
+      <!-- ------------------------------------------------------- Side rail -->
+      <aside class="rail" aria-label="On this page">
+        <ol>
+          <li><a href="#context">The idea</a></li>
+          <li><a href="#prototype">What we tested</a></li>
+          <li><a href="#sessions">Running the sessions</a></li>
+          <li><a href="#findings">What we heard</a></li>
+          <li><a href="#changes">What changed</a></li>
+          <li><a href="#reflection">Looking back</a></li>
+        </ol>
+      </aside>
+
+      <!-- ------------------------------------------------------------ Body -->
+      <div class="case-body">
+
+        <h2 id="context">The idea</h2>
+        <p>
+          Finity started from a pattern the four of us kept noticing in people our own
+          age: the money is not in one place any more. A salary, a side business, a
+          student loan, six subscriptions nobody remembers signing up for. Every one of
+          those lives in a different app with a different password.
+        </p>
+        <p>
+          We built the concept around two people. <strong>Alex</strong>, 29, runs a food
+          truck, an ecommerce store and some rental property, and switches between three
+          platforms just to see where he stands. <strong>Cynthia</strong>, 22, just
+          started her first salaried job and has six months before her loans start
+          gathering interest. Alex needs everything in one view. Cynthia needs the app to
+          do the remembering for her.
+        </p>
+
+        <div class="callout">
+          <h3>The bet we were testing</h3>
+          <p>
+            If one app can hold every account, people will tolerate a bit more setup at
+            the start. That bet only pays off if the setup is findable, which is exactly
+            what we pointed the sessions at.
+          </p>
+        </div>
+
+        <p>
+          Before any of that we sketched. Nothing precious, just enough to argue over.
+          The palette came out mostly blue on purpose, because money is stressful and
+          blue is not.
+        </p>
+
+        <div class="slider">
+          <div class="slider__track">
+            <figure>
+              <img src="../assets/img/finity/sketch-1.jpg" alt="Hand-drawn sketch of the Finity dashboard with balance and transaction list." loading="lazy" width="1200" height="1599">
+              <figcaption>Dashboard: cumulative balance at the top, transactions underneath.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/finity/sketch-2.jpg" alt="Hand-drawn sketch of the profile switching screen." loading="lazy" width="1200" height="1602">
+              <figcaption>Profile switching, the feature the whole concept rests on.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/finity/sketch-3.jpg" alt="Hand-drawn sketch of the savings goal flow." loading="lazy" width="1200" height="1924">
+              <figcaption>Savings goals, sketched as a short guided flow.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/finity/sketch-4.jpg" alt="Hand-drawn sketch of subscription management." loading="lazy" width="1177" height="2048">
+              <figcaption>Subscription management, with cancel sitting in plain sight.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/finity/moodboard.jpg" alt="Mood board of calm blue financial interfaces and typography." loading="lazy" width="1600" height="1212">
+              <figcaption>Mood board: calm, monochrome, low visual noise.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <h2 id="prototype">What we tested</h2>
+        <p>
+          We took the sketches into a mid-fidelity Figma prototype and wired four flows,
+          the four things a new user has to get through in their first week. Anything
+          outside those flows was deliberately left dead, and we told participants that
+          up front.
+        </p>
+
+        <ol>
+          <li><strong>Manage subscriptions.</strong> Find the subscription page and cancel Netflix.</li>
+          <li><strong>Create a new profile.</strong> Separate a freelance side business from a day job.</li>
+          <li><strong>Create a savings goal.</strong> Save for a vacation and set a target.</li>
+          <li><strong>Upgrade free to premium.</strong> Move onto the paid plan.</li>
+        </ol>
+
+        <div class="phones">
+          <figure class="phone">
+            <img src="../assets/img/finity/02-dashboard.png" alt="Finity dashboard showing total balance across profiles and a transaction list." loading="lazy" width="609" height="1209">
+            <figcaption>Dashboard, the landing screen for every session.</figcaption>
+          </figure>
+          <figure class="phone">
+            <img src="../assets/img/finity/08-subscriptions-list.png" alt="Finity subscriptions list with Netflix, Spotify and other services." loading="lazy" width="609" height="1209">
+            <figcaption>Task 1: the subscription list.</figcaption>
+          </figure>
+          <figure class="phone">
+            <img src="../assets/img/finity/04-new-profile-form.png" alt="Finity new profile form with name and account type fields." loading="lazy" width="609" height="1209">
+            <figcaption>Task 2: creating a profile.</figcaption>
+          </figure>
+          <figure class="phone">
+            <img src="../assets/img/finity/11-create-savings-goal.png" alt="Finity create savings goal form with goal name, amount and target date." loading="lazy" width="609" height="1209">
+            <figcaption>Task 3: setting a savings goal.</figcaption>
+          </figure>
+        </div>
+
+        <p>
+          <a class="link-arrow" href="https://www.figma.com/proto/Xq5dQuEpCVaneBBXaelwLz/Mid-fi-project--Finity?node-id=2-3&amp;p=f&amp;t=V4hruqYKWY1SBHZi-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=2%3A3&amp;show-proto-sidebar=1" rel="noopener">
+            Open the prototype we tested <span aria-hidden="true">&rarr;</span>
+          </a>
+        </p>
+
+        <h2 id="sessions">Running the sessions</h2>
+        <p>
+          Four participants, all young professionals between 18 and 35, all on their
+          phones. Each of us moderated one remote session over video with the prototype
+          shared, working from a script we wrote together so the four sessions would
+          actually be comparable.
+        </p>
+        <p>
+          I wrote and ran mine the way I used to run interviews as a reporter. Consent
+          and recording first. Then background questions before anything is shown, so I
+          know whether I am talking to someone who lives in a spreadsheet or someone who
+          checks their banking app once a fortnight. Then the tasks, thinking aloud, and
+          the same closing line every time:
+        </p>
+
+        <div class="quote">
+          <p>&ldquo;This is not a test of you. You cannot do anything wrong here, and negative feedback does not hurt anyone. Just tell me what you are thinking as you go.&rdquo;</p>
+          <cite>From the session script</cite>
+        </div>
+
+        <p>
+          After every task I asked the same follow-ups: was it where you expected, what
+          did you make of the navigation, what about the button labels, was anything
+          missing, and finally a satisfaction rating from 1 to 5. The rating is not the
+          finding. It is the thing that makes people explain themselves, and the
+          explanation is the finding.
+        </p>
+
+        <p class="note">
+          Note on the numbers below: four participants is a small sample, and it is not
+          meant to be statistically anything. The ratings are here because the spread
+          between them tells you where to look, not because 4.4 means something on its own.
+        </p>
+
+        <h2 id="findings">What we heard</h2>
+
+        <div class="bars reveal">
+          <div>
+            <p class="bar__label"><span>Task 1 &middot; Manage subscriptions</span> <span>4.4</span></p>
+            <div class="bar__track"><div class="bar__fill" style="--v:87.5%"></div></div>
+          </div>
+          <div>
+            <p class="bar__label"><span>Task 2 &middot; Create a profile</span> <span>4.2</span></p>
+            <div class="bar__track"><div class="bar__fill" style="--v:83.3%"></div></div>
+          </div>
+          <div>
+            <p class="bar__label"><span>Task 3 &middot; Create a savings goal</span> <span>4.5</span></p>
+            <div class="bar__track"><div class="bar__fill" style="--v:90%"></div></div>
+          </div>
+          <div>
+            <p class="bar__label"><span>Task 4 &middot; Upgrade to premium</span> <span>4.5</span></p>
+            <div class="bar__track"><div class="bar__fill" style="--v:90%"></div></div>
+          </div>
+          <p class="bars__foot">Mean satisfaction out of 5. Task 2 is an average of three, one participant did not reach it.</p>
+        </div>
+
+        <p>
+          Everything scored well, which is the trap. When every task lands above four you
+          have to go and read the transcripts, because the interesting material is in what
+          people said on the way to giving you a four.
+        </p>
+
+        <div class="task">
+          <div class="task__head">
+            <h3>Task 1 &middot; Manage subscriptions</h3>
+            <p class="task__score">4.4<em>/5</em><small>Mean of 4</small></p>
+          </div>
+          <div class="split">
+            <div>
+              <h4>Worked</h4>
+              <ul>
+                <li>Every participant found the page, and most said it was where they expected.</li>
+                <li>&ldquo;I like that it wasn&rsquo;t hidden&rdquo; came up more than once. Canceling is usually buried and people notice when it is not.</li>
+                <li>One participant specifically called out the color on the cancel confirmation as helpful.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Did not</h4>
+              <ul>
+                <li>The cancel warning does not say what is actually being canceled, or when it stops.</li>
+                <li>Two people wanted the vendor&rsquo;s own details, a phone number or a link, in case they had to finish the cancellation elsewhere.</li>
+                <li>We tracked spend year to date. Subscriptions bill monthly, and participants read the number the wrong way round because of it.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="quote">
+            <p>&ldquo;I&rsquo;d want to see if the price has increased suddenly, which the app would show. That&rsquo;s helpful.&rdquo;</p>
+            <cite>Participant 1, biotech engineer</cite>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task__head">
+            <h3>Task 2 &middot; Create a profile</h3>
+            <p class="task__score">4.2<em>/5</em><small>Mean of 3</small></p>
+          </div>
+          <div class="split">
+            <div>
+              <h4>Worked</h4>
+              <ul>
+                <li>The form itself was straightforward and nobody asked for extra fields.</li>
+                <li>One participant defended the word &ldquo;profile&rdquo; unprompted: calling it &ldquo;account&rdquo; would collide with bank accounts.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Did not</h4>
+              <ul>
+                <li>The lowest scoring task, and the only one where a participant pushed back on our language.</li>
+                <li>Not everyone found it straight away. One said it needed to be clearer where to go.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="quote">
+            <p>&ldquo;Profile creation did have a slightly corporate ring to it. Maybe just call it new money stream?&rdquo;</p>
+            <cite>Participant 3</cite>
+          </div>
+          <p>
+            Two participants, opposite conclusions, both with a good reason. That is the
+            useful kind of disagreement: it says the concept is right and the word is
+            carrying too much weight. We kept the feature and put the label on the list
+            to test again.
+          </p>
+        </div>
+
+        <div class="task">
+          <div class="task__head">
+            <h3>Task 3 &middot; Create a savings goal</h3>
+            <p class="task__score">4.5<em>/5</em><small>Mean of 4</small></p>
+          </div>
+          <div class="split">
+            <div>
+              <h4>Worked</h4>
+              <ul>
+                <li>Described as &ldquo;very easy&rdquo; and &ldquo;smooth&rdquo; once found. Highest rated task alongside the upgrade flow.</li>
+                <li>Labels did their job. One participant said he could guess what was behind each one, which is the whole point of a label.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Did not</h4>
+              <ul>
+                <li><strong>Two of four went to &ldquo;Budget&rdquo; first.</strong> Saving and budgeting are the same idea in most people&rsquo;s heads.</li>
+                <li>One participant felt the flow had more steps than other apps ask for.</li>
+                <li>Another wanted the option to drop an opening contribution in at the moment the goal is created.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="quote">
+            <p>&ldquo;First I clicked on budget, then I saw where the savings goals button was and it made sense.&rdquo;</p>
+            <cite>Participant 1</cite>
+          </div>
+          <p>
+            The score says this task was fine. The behavior says half our participants
+            took a wrong turn before it was fine. This is the finding I would have missed
+            if I had only collected ratings.
+          </p>
+        </div>
+
+        <div class="task">
+          <div class="task__head">
+            <h3>Task 4 &middot; Upgrade to premium</h3>
+            <p class="task__score">4.5<em>/5</em><small>Mean of 4</small></p>
+          </div>
+          <div class="split">
+            <div>
+              <h4>Worked</h4>
+              <ul>
+                <li>Every single participant used the word &ldquo;easy&rdquo;. The one flow nobody hesitated in.</li>
+                <li>Two could name what they were getting: AI recommendations on premium, unlimited goals on standard.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Did not</h4>
+              <ul>
+                <li>Two others could only guess at the difference between the tiers, and both asked for a side by side comparison.</li>
+                <li>Two expected a card entry step and were unsettled when the flow finished without one.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="quote">
+            <p>&ldquo;This task compared to the others was very simple. I think you need a credit card input somewhere though.&rdquo;</p>
+            <cite>Participant 2</cite>
+          </div>
+          <p>
+            Easiest task, and still the one carrying the most commercial risk. People
+            were about to pay us and could not confidently say what for. A flow can be
+            frictionless and unconvincing at the same time.
+          </p>
+        </div>
+
+        <h2 id="changes">What changed</h2>
+        <p>
+          We pooled the four sessions and turned the pattern into four decisions rather
+          than a list of complaints.
+        </p>
+
+        <div class="callout">
+          <h3>1. Fix the words before the screens</h3>
+          <p>
+            &ldquo;Budget&rdquo; was swallowing &ldquo;savings goals&rdquo;, and
+            &ldquo;profile&rdquo; read as corporate to one participant and as exactly
+            right to another. Both go back into the next round of testing as label
+            options rather than being settled by whoever argues hardest in the team call.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>2. Give the app a proper home screen</h3>
+          <p>
+            The hesitation in tasks 2 and 3 was discoverability, not comprehension.
+            Every participant who eventually found a feature understood it immediately.
+            So we planned a home screen that acts as a launch point into every tool,
+            plus tool tips at the specific spots where people stalled.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>3. Make the paid tier legible</h3>
+          <p>
+            A side by side comparison of free against premium, and a payment step that
+            appears where people already expect it. Two participants told us the same
+            thing in different words, which was enough.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>4. Tighten the subscription tool</h3>
+          <p>
+            Move spend tracking from year to date to monthly so it matches how
+            subscriptions actually bill, spell out what a cancellation covers, and carry
+            vendor contact details on the subscription record.
+          </p>
+        </div>
+
+        <p>
+          We also flagged our own inconsistency. Colors and menus drifted between flows
+          because four people built four prototypes. No participant complained about it,
+          but we were not going to let it through on that basis.
+        </p>
+
+        <h2 id="reflection">Looking back</h2>
+        <p>
+          The thing I would change is the rating question. Asking for a number after each
+          task gave us four scores clustered between 4.2 and 4.5, and if we had stopped
+          there the report would have said the prototype was fine. The prototype was not
+          fine. Two of four participants went looking for savings goals in the wrong
+          place, and both still rated the task highly, because they got there in the end
+          and people are generous.
+        </p>
+        <p>
+          Next time I would record where people go first, before they self-correct, and
+          treat that as the real measure. The number is a conversation starter. The wrong
+          turn is the finding.
+        </p>
+        <p>
+          The part I would keep is the background questions. Knowing that one participant
+          had spent six years in a job where mistakes are expensive told me how to read
+          his caution later on, and I would not have had that if I had opened with the
+          first task.
+        </p>
+
+        <p style="margin-top:var(--sp-6)">
+          <a class="link-arrow" href="https://vimeo.com/1078513720/90ba6270e5" rel="noopener">
+            Watch the concept walkthrough <span aria-hidden="true">&rarr;</span>
+          </a>
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <nav class="pagenav" aria-label="Next case study">
+    <div class="wrap">
+      <a href="shein.html">
+        <span>
+          <small>Next case study</small>
+          <strong>Shein cognitive walkthrough</strong>
+        </span>
+        <span aria-hidden="true" style="font-size:var(--step-2)">&rarr;</span>
+      </a>
+    </div>
+  </nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <h2>Let&rsquo;s talk</h2>
+      <p style="color:#D8D8D8; max-width:32rem;">
+        I&rsquo;ve just finished my M.S. in Human-Computer Interaction at DePaul
+        and I&rsquo;m looking for UX research and design roles. If you have something
+        you want understood properly, I&rsquo;d like to hear about it.
+      </p>
+    </div>
+    <div>
+      <ul class="footer__contact">
+        <li><a class="cta cta--primary" href="mailto:aaj4298@gmail.com">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">Email me</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a class="cta" href="https://www.linkedin.com/in/alishajordan326" rel="noopener">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">LinkedIn</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a class="cta" href="../assets/docs/alisha-jordan-resume.pdf">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">R&eacute;sum&eacute; (PDF)</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+      </ul>
+      <p class="footer__addr">or write to <a href="mailto:aaj4298@gmail.com">aaj4298@gmail.com</a></p>
+    </div>
+  </div>
+  <div class="wrap footer__note">
+    <span>&copy; 2026 Alisha Jordan</span>
+    <span>Built on the Allynne design system</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

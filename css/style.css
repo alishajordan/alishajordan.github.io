@@ -1,0 +1,1638 @@
+/* ==========================================================================
+   Alisha Jordan — UX Portfolio
+   Built on the Allynne design system (olive + magenta, Libre Franklin)
+
+   Contrast note: the brand olive (#9E9821) is 3.0:1 on white and the brand
+   magenta (#ED018C) is 4.2:1. Both fall under the WCAG AA 4.5:1 threshold for
+   body text, so they are used for large headings, buttons and decoration only.
+   Links and small text use --magenta-deep (#C4017A, 5.8:1) instead. The nav and
+   the heroes are a dark band, and everything sitting on it has its own token in
+   section 9c rather than borrowing one of these. Greys were checked against
+   --paper-alt and --magenta-wash, not just white, because a tinted background
+   quietly costs about 0.2 of a ratio point.
+   ========================================================================== */
+
+/* --------------------------------------------------------------- 1. Font */
+
+@font-face {
+  font-family: 'Libre Franklin';
+  src: url('../assets/fonts/libre-franklin-latin.woff2') format('woff2-variations'),
+       url('../assets/fonts/libre-franklin-latin.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ------------------------------------------------------------- 2. Tokens */
+
+:root {
+  /* Brand */
+  --olive:        #9E9821;
+  --olive-deep:   #6E6A17;   /* AA-safe under white text */
+  --olive-57:     #ADA675;   /* the 57% swatch from her palette, flattened */
+  --olive-wash:   #EFE7D8;   /* image beds and the portrait arch */
+  --magenta:      #ED018C;   /* decoration only: 4.2:1 is too low for text */
+  --magenta-deep: #C4017A;   /* AA-safe for links, small text and buttons */
+  --magenta-dark: #A30165;   /* button hover */
+  --magenta-wash: #FDF0F7;
+
+  /* Ink */
+  --ink:       #1A1A1A;      /* 17.4:1 on paper */
+  --ink-soft:  #575757;      /*  7.2:1 on paper */
+  --ink-faint: #636363;      /*  4.6:1 on the deepest wash, 6.1:1 on paper */
+
+  /* Surfaces. A tonal ladder, not a set of unrelated backgrounds. Pure white
+     is deliberately absent: it was the reason the page fell off a cliff from
+     the hero into the body, and a warm off-white is the current answer to that
+     everywhere (it is what Pantone named for 2026). Adjacent surfaces are
+     never more than a small step apart, so scrolling never snaps.
+
+     Warm clay rather than a cool grey, because the palette was olive, magenta
+     and white with nothing in the middle. Clay is that middle register, and
+     magenta sits far better on a warm cream than on a cold one. */
+  --canvas:    #F8F3EA;      /* the page behind everything */
+  --paper:     #FDFAF4;      /* cards, the panel that lifts out of the hero */
+  --paper-alt: #F4EDE2;      /* alternating sections */
+  --rule:      #E3DACA;
+  --ink-deep-olive: #332B1A;  /* footer: the dark end of the same warm family */
+  --night-cream:    #F7F6EC;  /* type and fills on the footer */
+
+  /* The band: nav and every hero. It is --ink-deep-olive on purpose, the same
+     value the footer already uses, so the page opens and closes on one surface.
+     Everything that sits on it gets a token here rather than a one-off colour,
+     which is what makes the band a single decision instead of thirty. */
+  --hero-band:      #332B1A;
+  --band-ink:       #F7F6EC;  /* 12.9:1 -- headings, the name, fact values */
+  --band-ink-soft:  #C9C6BA;  /*  8.2:1 -- ledes, eyebrows, fact labels */
+  --band-accent:    #FF7EC0;  /*  6.0:1 -- the magenta, lifted to clear AA here */
+  --band-marker:    #ADA675;  /*  5.7:1 -- her 57% olive swatch, the eyebrow bar */
+  --band-rule:      rgba(247, 246, 236, .22);
+
+  /* Type scale (fluid) */
+  --step--1: clamp(0.83rem, 0.79rem + 0.18vw, 0.92rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.22vw, 1.13rem);
+  --step-1:  clamp(1.25rem, 1.16rem + 0.44vw, 1.5rem);
+  --step-2:  clamp(1.56rem, 1.4rem + 0.8vw, 2.0rem);
+  --step-3:  clamp(1.95rem, 1.68rem + 1.35vw, 2.66rem);
+  --step-4:  clamp(2.44rem, 2.0rem + 2.2vw, 3.55rem);
+  --step-5:  clamp(3.05rem, 2.35rem + 3.5vw, 4.74rem);
+
+  /* Space */
+  --sp-1: 0.5rem;  --sp-2: 0.75rem; --sp-3: 1rem;   --sp-4: 1.5rem;
+  --sp-5: 2rem;    --sp-6: 3rem;    --sp-7: 4.5rem; --sp-8: 7rem;
+
+  /* Layout */
+  --wide:  1180px;
+  --prose: 42rem;
+  --radius: 14px;
+
+  /* How far the section below the hero overlaps it, and how round its top
+     corners are. Read by both the hero's bottom padding and the panel. */
+  --lift:    3rem;
+  --panel-r: 2.75rem;
+
+  --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px -12px rgba(26,26,26,.18);
+  --ease: cubic-bezier(.2, .7, .3, 1);
+}
+
+/* -------------------------------------------------------------- 3. Reset */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: 'Libre Franklin', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+h1, h2, h3, h4 { line-height: 1.14; font-weight: 800; letter-spacing: -0.021em; }
+h1 { font-size: var(--step-5); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); }
+p  { text-wrap: pretty; }
+h1, h2, h3, h4 { text-wrap: balance; }
+
+/* ------------------------------------------------------ 4. A11y utilities */
+
+.skip-link {
+  position: absolute; left: var(--sp-3); top: -100%;
+  z-index: 100; padding: var(--sp-2) var(--sp-4);
+  background: var(--ink); color: #fff; border-radius: 0 0 8px 8px;
+  text-decoration: none; font-weight: 600;
+}
+.skip-link:focus { top: 0; }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--magenta-deep);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* The nav used to need a white ring because magenta on the deepened olive was
+   1.9:1. On the lighter bar the standard ring is 3.8:1 and stays. */
+
+/* --------------------------------------------------------- 5. Layout bits */
+
+.wrap  { width: min(100% - 2.5rem, var(--wide)); margin-inline: auto; }
+.prose { width: min(100%, var(--prose)); }
+.section { padding-block: var(--sp-8); }
+.section--tight { padding-block: var(--sp-7); }
+.section--alt { background: var(--paper-alt); }
+
+.rule { border: 0; border-top: 1px solid var(--rule); }
+
+/* Eyebrow label — the small olive marker used above section headings */
+.eyebrow {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--step--1); font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: var(--sp-3);
+}
+.eyebrow::before {
+  content: ''; width: 26px; height: 4px; flex: none;
+  background: var(--olive); border-radius: 2px;
+}
+/* Inside the dark band the marker switches to --band-marker: see 9c. */
+
+/* ------------------------------------------------------------- 6. Buttons */
+
+.btn {
+  display: inline-flex; align-items: center; gap: .55em;
+  padding: .8em 1.5em;
+  background: var(--magenta-deep); color: #fff;
+  font-weight: 700; text-decoration: none;
+  border: 2px solid var(--magenta-deep); border-radius: 999px;
+  cursor: pointer;
+  transition: transform .18s var(--ease), background-color .18s var(--ease);
+}
+.btn:hover { background: var(--magenta-dark); border-color: var(--magenta-dark); transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.btn .arrow { transition: transform .18s var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn .arrow { transition: none; }
+  .btn:hover { transform: none; }
+}
+
+/* --------------------------------------------------------------- 7. Links */
+
+a { color: var(--magenta-deep); }
+a:hover { color: var(--ink); }
+
+.link-arrow {
+  display: inline-flex; align-items: center; gap: .4em;
+  font-weight: 700; text-decoration: none;
+  border-bottom: 2px solid currentColor; padding-bottom: 1px;
+}
+
+/* ------------------------------------------------------------ 8. Site nav */
+
+/* The bar is the same colour as the hero, with no rule between them, so the top
+   of every page is one unbroken block rather than a band sitting on a page.
+   Once you scroll past the hero it separates itself: the dark bar over the
+   cream body is a clear step without needing a border. Everything that changes
+   colour with the band is in 9c, not here. */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--hero-band);
+}
+.nav__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-4); padding-block: .7rem;
+}
+.nav__brand {
+  display: inline-flex; align-items: center; gap: .6rem;
+  text-decoration: none; color: var(--ink); font-weight: 800;
+  font-size: var(--step-1); letter-spacing: -.02em;
+}
+.nav__brand img { width: 34px; height: auto; }
+.nav__brand:hover { color: var(--ink); }
+
+.nav__links { display: flex; gap: .15rem; list-style: none; padding: 0; }
+.nav__links a {
+  position: relative; display: block; isolation: isolate;
+  color: var(--ink); text-decoration: none; font-weight: 700;
+  padding: .35em .75em;
+  border-radius: 8px;
+}
+/* Both label colours come from 9c, because they depend on the band. */
+.nav__links a:hover { color: inherit; }
+
+/* No visual marker on the current page, by choice: all three links read the
+   same at rest. aria-current stays on the link in the markup, so screen readers
+   still announce which page you are on. */
+
+/* ---------------------------------------------------- 8b. Nav hover sweep
+
+   Four layers, same idea as the Framer Motion reference: the label lifts away,
+   a magenta panel swings up behind it, an ink panel follows, and a second copy
+   of the label rises into place on top. Done with transforms and opacity only,
+   so it stays on the compositor.
+
+   Scoped to devices that actually hover, so a phone tap never parks a link in
+   its hover state, and mirrored on :focus-visible so keyboards get it too.
+   -------------------------------------------------------------------- */
+
+.nav__txt { position: relative; z-index: 2; display: block; }
+
+.nav__txt--in {
+  position: absolute; inset: 0; z-index: 2;
+  display: grid; place-items: center;
+}
+
+/* Three panels fan in one after another, so the sweep reads as her palette
+   rather than as two flat colors: the pale olive wash flashes first, the brand
+   magenta crosses over it, and the ink panel lands last and stays.
+   ::after paints over ::before, so ink goes in ::after. */
+.nav__sweep { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.nav__sweep { background: var(--olive-wash); }
+.nav__sweep::before,
+.nav__sweep::after { content: ''; position: absolute; inset: 0; }
+.nav__sweep::before { background: var(--magenta); }
+.nav__sweep::after  { background: var(--ink); }
+
+@media (hover: hover) and (pointer: fine) and (min-width: 46.01rem) {
+  .nav__links a { overflow: hidden; }
+
+  /* The reference easing, and a bezier that overshoots slightly to stand in
+     for the spring. */
+  .nav__links a > * {
+    --sweep-ease: cubic-bezier(.32, .72, 0, 1);
+    --sweep-spring: cubic-bezier(.22, 1.2, .36, 1);
+    will-change: transform;
+  }
+
+  .nav__txt {
+    transition: transform .55s var(--sweep-spring);
+  }
+  .nav__txt--in {
+    transform: translateY(180%) rotate(-60deg) scale(.5);
+    transition: transform .55s var(--sweep-spring);
+  }
+  /* Parked well clear of the box: at 1.5x width a -40deg rotation swings a
+     corner roughly 53px above the panel's own centre, which is enough to peek
+     back through the clip at a smaller offset. */
+  .nav__sweep {
+    transform: translateY(200%) rotate(-40deg) scaleX(1.5);
+    transition: transform .5s var(--sweep-ease);
+  }
+  .nav__sweep::before {
+    transform: translateY(150%) rotate(-55deg) scaleX(1.3);
+    transition: transform .52s var(--sweep-ease) .07s;
+  }
+  .nav__sweep::after {
+    transform: translateY(190%) rotate(-70deg) scaleX(1.25);
+    transition: transform .54s var(--sweep-ease) .14s;
+  }
+
+  .nav__links a:hover .nav__txt,
+  .nav__links a:focus-visible .nav__txt {
+    transform: translateY(-150%) rotate(-30deg) scale(.5);
+  }
+  .nav__links a:hover .nav__txt--in,
+  .nav__links a:focus-visible .nav__txt--in {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  .nav__links a:hover .nav__sweep,
+  .nav__links a:focus-visible .nav__sweep {
+    transform: translateY(0) rotate(0deg) scaleX(1.5);
+  }
+  .nav__links a:hover .nav__sweep::before,
+  .nav__links a:focus-visible .nav__sweep::before {
+    transform: translateY(0) rotate(0deg) scaleX(1.3);
+  }
+  .nav__links a:hover .nav__sweep::after,
+  .nav__links a:focus-visible .nav__sweep::after {
+    transform: translateY(0) rotate(0deg) scaleX(1.25);
+  }
+}
+
+/* Motion off: nothing travels. The sweep becomes a plain fill that switches on
+   under the label, and the second copy of the label is dropped entirely.
+   These selectors deliberately mirror the hover rules above, because a shorter
+   selector would lose to them and leave the label flying off a pill with
+   nothing written on it. */
+@media (prefers-reduced-motion: reduce) {
+  .nav__links a > * { transition: none !important; }
+  .nav__txt--in { display: none; }
+
+  .nav__txt,
+  .nav__links a:hover .nav__txt,
+  .nav__links a:focus-visible .nav__txt { transform: none; }
+
+  .nav__sweep,
+  .nav__links a:hover .nav__sweep,
+  .nav__links a:focus-visible .nav__sweep { transform: none; }
+  .nav__sweep::before,
+  .nav__links a:hover .nav__sweep::before,
+  .nav__links a:focus-visible .nav__sweep::before { transform: none; }
+  .nav__sweep::after,
+  .nav__links a:hover .nav__sweep::after,
+  .nav__links a:focus-visible .nav__sweep::after { transform: none; }
+
+  .nav__sweep { opacity: 0; }
+  .nav__links a:hover .nav__sweep,
+  .nav__links a:focus-visible .nav__sweep { opacity: 1; }
+  /* No second label here, so the original one has to survive the ink panel. */
+  .nav__links a:hover .nav__txt,
+  .nav__links a:focus-visible .nav__txt { color: #fff; }
+}
+
+.nav__toggle { display: none; }
+
+@media (max-width: 46rem) {
+  .nav__toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; padding: 0;
+    background: transparent; border: 2px solid rgba(26,26,26,.45);
+    border-radius: 8px; color: var(--ink); cursor: pointer;
+  }
+  .nav__links {
+    position: absolute; inset: 100% 0 auto 0;
+    flex-direction: column; gap: 0;
+    background: var(--hero-band); border-bottom: 1px solid rgba(26,26,26,.14);
+    padding: var(--sp-2) 1.25rem var(--sp-4);
+  }
+  .nav__links[hidden] { display: none; }
+  .nav__links a { display: block; padding: .7em 0; border-bottom: 1px solid rgba(26,26,26,.18); border-radius: 0; }
+  .nav__links .nav__sweep, .nav__links .nav__txt--in { display: none; }
+}
+
+/* ---------------------------------------------------------------- 9. Hero */
+
+.hero { padding-block: var(--sp-8) var(--sp-7); position: relative; overflow: clip; }
+.hero__grid { display: grid; gap: var(--sp-6); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 60rem) { .hero__grid { grid-template-columns: 1.2fr .8fr; gap: var(--sp-7); } }
+
+.hero__kicker {
+  font-size: var(--step-0); font-weight: 700; color: var(--magenta-deep);
+  letter-spacing: .01em; margin-bottom: var(--sp-3);
+}
+.hero h1 { margin-bottom: var(--sp-4); }
+/* .hero, not .hero h1: the highlighted phrase lives in the lede. It was
+   scoped to the headline and had therefore never rendered once. */
+.hero .accent {
+  background: linear-gradient(transparent 62%, rgba(237,1,140,.22) 62%);
+}
+.hero__lede { font-size: var(--step-1); color: var(--ink-soft); max-width: 34rem; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+
+/* The arch — lifted from the Card component in her Allynne UI kit */
+.arch {
+  border-radius: 999px 999px var(--radius) var(--radius);
+  overflow: clip;
+  background: var(--olive-wash);
+}
+/* White, not the wash it inherits from .arch -- the hero behind it is that
+   wash now, so the placeholder would otherwise vanish into it. A real photo
+   covers this anyway. */
+.hero__portrait {
+  background: var(--paper);
+  aspect-ratio: 3 / 4;
+  display: grid; place-items: center;
+  border: 1px solid var(--rule);
+  color: var(--ink-faint); font-size: var(--step--1); text-align: center;
+  padding: var(--sp-4);
+}
+/* Keep the portrait from swallowing the fold on phones. */
+@media (max-width: 60rem) {
+  .hero__portrait { width: min(100%, 17rem); margin-inline: auto; }
+}
+.hero__portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ------------------------------------------------- 9b. Section hand-off
+
+   The hero used to end on a 16px checkered stripe. It read as the bottom of
+   the page, which is the opposite of what a divider should do, so the seam is
+   now a raised panel instead: the section below the hero has rounded top
+   corners, overlaps the hero, and casts a soft shadow up onto it. Scrolling
+   past the hero then feels like one surface sliding over another rather than
+   two blocks meeting at a line.
+
+   The panel is a pseudo-element rather than a background on the section
+   itself, because the case studies keep a position:sticky rail inside this
+   same section and an animated transform on an ancestor would drag it along.
+   ---------------------------------------------------------------------- */
+
+.section--lift {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--lift) * -1);
+  padding-top: var(--sp-8);
+  background: none;                    /* the panel carries the colour now */
+}
+.section--lift > * { position: relative; z-index: 1; }
+
+.section--lift::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -4rem 0;                  /* slack, so the rise never shows a gap */
+  z-index: 0;
+  background: var(--paper);
+  border-radius: var(--panel-r) var(--panel-r) 0 0;
+  box-shadow: 0 -18px 40px -26px rgba(26,26,26,.22);
+}
+.section--lift.section--alt::before { background: var(--paper-alt); }
+
+/* The panel bleeds 4rem past its own box, so everything after it has to sit
+   above it in the paint order. */
+main > .section--lift ~ * { position: relative; z-index: 2; }
+
+/* Room for the overlap, plus the band down the hero. It does two jobs: the top
+   of every page gets a surface of its own instead of flat white, and the panel
+   edge below reads where both surfaces would otherwise be the same cream.
+
+   One colour, edge to edge. A gradient behind the headline reads as a shadow
+   falling on a page rather than a coloured surface, and it eats the colour: an
+   earlier version was down to a barely-tinted cream by 40% of the way down. */
+.hero, .case-hero {
+  padding-bottom: calc(var(--sp-7) + var(--lift));
+  background: var(--hero-band);
+}
+
+/* The landing page carries a touch more of the bloom than the interiors. */
+.hero--feature.field::before {
+  background: radial-gradient(circle, rgba(173,166,117,.20), rgba(173,166,117,0) 64%);
+}
+
+/* ------------------------------------------------------------ 10. Work cards */
+
+.cards { display: grid; gap: var(--sp-5); grid-template-columns: 1fr; }
+@media (min-width: 48rem) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 68rem) { .cards--3 { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  display: flex; flex-direction: column;
+  background: var(--paper); border: 1px solid var(--rule);
+  border-radius: var(--radius); overflow: clip;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--olive-57); }
+.card:focus-within { border-color: var(--magenta-deep); }
+@media (prefers-reduced-motion: reduce) { .card, .card:hover { transition: none; transform: none; } }
+
+.card__media {
+  aspect-ratio: 16 / 10; background: var(--olive-wash);
+  display: grid; place-items: center; overflow: clip;
+  border-bottom: 1px solid var(--rule);
+  /* Without a definite row the track sizes to the image, and an image taller
+     than 16/10 then wins against aspect-ratio and stretches the box. */
+  grid-template-rows: minmax(0, 1fr);
+}
+.card__media img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.card__body { padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-2); flex: 1; }
+.card__meta {
+  font-size: var(--step--1); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.card h3 a { color: inherit; text-decoration: none; }
+.card h3 a::after { content: ''; position: absolute; inset: 0; }
+.card { position: relative; }
+.card p { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
+.card__foot { margin-top: auto; padding-top: var(--sp-2); font-weight: 700; color: var(--magenta-deep); font-size: var(--step--1); }
+
+.tag {
+  display: inline-block; padding: .25em .7em;
+  background: var(--magenta-wash); color: var(--magenta-deep);
+  border-radius: 999px; font-size: var(--step--1); font-weight: 700;
+}
+.tag--soon { background: var(--olive-wash); color: var(--olive-deep); }
+
+/* ------------------------------------------------------------- 11. Method list */
+
+.methods { display: grid; gap: var(--sp-4); grid-template-columns: 1fr; margin-top: var(--sp-5); }
+@media (min-width: 44rem) { .methods { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 66rem) { .methods { grid-template-columns: repeat(4, 1fr); } }
+
+/* Flex column so the links below can be pushed to a common baseline: the four
+   cards carry different amounts of copy and the links were landing at four
+   different heights. */
+.method { padding-top: var(--sp-3); border-top: 3px solid var(--olive); display: flex; flex-direction: column; }
+.method h3 { font-size: var(--step-0); margin-bottom: .35em; }
+.method p { font-size: var(--step--1); color: var(--ink-soft); }
+
+/* Where a drawer item has something live behind it. Underlined rather than
+   arrowed: these are footnotes to the card, not the card's own call to action,
+   and three arrows in a row would compete with the case-study cards above. */
+.method__links {
+  display: flex; flex-wrap: wrap; gap: var(--sp-3);
+  margin-top: auto !important;
+  padding-top: var(--sp-3);
+}
+.method__links a {
+  font-weight: 700; text-decoration: none;
+  border-bottom: 2px solid currentColor; padding-bottom: 1px;
+}
+
+/* ---------------------------------------------------------------- 12. Footer */
+
+/* The footer closes the page with the same gesture the hero opens it with: a
+   rounded panel overlapping its neighbour. Going light-to-dark in one edge was
+   the last cliff left on the page; framed as a layer, and led into by its own
+   short ramp, it reads as the end of the document rather than a wall. */
+.footer {
+  position: relative; z-index: 3;
+  margin-top: calc(var(--lift) * -1);
+  background: linear-gradient(180deg, #4A4028 0%, var(--ink-deep-olive) 20%);
+  color: #fff;
+  border-radius: var(--panel-r) var(--panel-r) 0 0;
+  padding-block: calc(var(--sp-7) + var(--lift)) var(--sp-5);
+}
+.footer a { color: #fff; }
+.footer h2 { margin-bottom: var(--sp-4); }
+.footer__grid { display: grid; gap: var(--sp-5); grid-template-columns: 1fr; }
+@media (min-width: 48rem) { .footer__grid { grid-template-columns: 1.2fr .8fr; gap: var(--sp-7); } }
+.footer__contact { list-style: none; padding: 0; display: grid; gap: var(--sp-2); }
+.footer__contact a { text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.footer__contact { gap: var(--sp-3); }
+.footer__contact a { text-decoration: none; }
+.footer__addr {
+  margin-top: var(--sp-3); font-size: var(--step--1); color: #C9C6BA;
+}
+.footer__addr a { color: #C9C6BA; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* ------------------------------------------------------------ 26. CTA button
+
+   The footer actions. Two layers, which is the pattern every good version of
+   this uses: the pill itself, and a fill that wipes across it. The fill enters
+   from the left and leaves to the right rather than retracting the way it came,
+   which is the whole trick -- it reads as something passing through rather than
+   a box growing and shrinking.
+
+   The arrow is drawn, not typed. A glyph can only slide; a two-part SVG lets
+   the shaft draw itself out from behind the chevron while the chevron advances,
+   which is what makes the button feel like it is going somewhere.
+
+   Guarded on (hover: hover) so a tap on a phone never parks a button in its
+   hover state, and mirrored on :focus-visible so keyboards get the same thing.
+   -------------------------------------------------------------------------- */
+
+.cta {
+  position: relative; isolation: isolate; overflow: clip;   /* clip, not hidden: see the note in 15 */
+  display: inline-flex; align-items: center; gap: .7em;
+  padding: .78em 1.4em;
+  border: 2px solid rgba(247,246,236,.45);
+  border-radius: 999px;
+  font-weight: 700; text-decoration: none;
+  color: var(--night-cream);
+  width: fit-content;
+}
+.cta__fill {
+  position: absolute; inset: 0; z-index: -1;
+  background: var(--night-cream);
+  transform: scaleX(0); transform-origin: 100% 50%;
+}
+.cta__label { position: relative; }
+.cta__arrow { flex: none; display: block; overflow: visible; }
+.cta__shaft { stroke-dasharray: 13; stroke-dashoffset: 8; }   /* a stub at rest, full length on hover */
+.cta__head  { transform: translateX(0); }
+
+/* Primary: her magenta, with a ring so the pill still has an edge against the
+   dark footer. The white label on it is 5.8:1, which is what the rule measures;
+   the ring is there because the fill itself is only 2.4:1 on this background. */
+.cta--primary {
+  background: var(--magenta-deep);
+  border-color: transparent;
+  box-shadow: 0 0 0 1px rgba(247,246,236,.24), 0 12px 28px -14px rgb(0 0 0 / .7);
+  color: #fff;
+}
+.cta--primary .cta__fill { background: var(--magenta-dark); }
+
+@media (hover: hover) and (pointer: fine) {
+  .cta, .cta__fill, .cta__shaft, .cta__head {
+    transition-timing-function: cubic-bezier(.22, .61, .36, 1);
+  }
+  .cta        { transition: color .16s ease .14s, border-color .3s; }
+  .cta__fill  { transition: transform .42s; }
+  .cta__shaft { transition: stroke-dashoffset .34s .06s; }
+  .cta__head  { transition: transform .34s .06s; }
+
+  .cta:hover .cta__fill,
+  .cta:focus-visible .cta__fill { transform: scaleX(1); transform-origin: 0 50%; }
+  .cta:hover, .cta:focus-visible { color: var(--ink-deep-olive); border-color: var(--night-cream); }
+  .cta--primary:hover, .cta--primary:focus-visible { color: #fff; }
+  .cta:hover .cta__shaft,
+  .cta:focus-visible .cta__shaft { stroke-dashoffset: 0; }
+  .cta:hover .cta__head,
+  .cta:focus-visible .cta__head { transform: translateX(3px); }
+}
+
+/* Motion off: the same three end states, arrived at instantly. */
+@media (prefers-reduced-motion: reduce) {
+  .cta, .cta__fill, .cta__shaft, .cta__head { transition: none !important; }
+  .cta:hover .cta__fill, .cta:focus-visible .cta__fill { transform: scaleX(1); transform-origin: 0 50%; }
+  .cta:hover, .cta:focus-visible { color: var(--ink-deep-olive); border-color: var(--night-cream); }
+  .cta--primary:hover, .cta--primary:focus-visible { color: #fff; }
+  .cta:hover .cta__shaft, .cta:focus-visible .cta__shaft { stroke-dashoffset: 0; }
+}
+.footer__note {
+  margin-top: var(--sp-6); padding-top: var(--sp-4);
+  border-top: 1px solid rgba(255,255,255,.2);
+  font-size: var(--step--1); color: #C9C9C9;
+  display: flex; flex-wrap: wrap; gap: var(--sp-3); justify-content: space-between;
+}
+
+/* ------------------------------------------------------------- 13. Motion */
+
+/* Only hide content when JS is available to bring it back. Without the .js
+   class (script blocked, or it failed) everything stays visible. */
+.js .reveal { opacity: 0; transform: translateY(14px); }
+.js .reveal.is-visible {
+  opacity: 1; transform: none;
+  transition: opacity .55s var(--ease), transform .55s var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal, .js .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+}
+
+/* ------------------------------------------------- 15. Decorative field
+
+   Alisha asked for "a little more creativity ... maybe a subtle background
+   or subtle motion". Everything here is decoration only: it sits behind the
+   content, never carries meaning, and stops completely under
+   prefers-reduced-motion. Two soft brand-colour clouds drift very slowly,
+   with a fine grain over the top so the flat white does not look empty.
+   -------------------------------------------------------------------- */
+
+/* clip, not hidden: overflow:hidden would make this a scroll container, and
+   every view() timeline inside it would then measure against this box instead
+   of the page, so nothing would ever animate. */
+.field { position: relative; overflow: clip; isolation: isolate; }
+.field > :not(.grain) { position: relative; z-index: 1; }
+
+.field::before,
+.field::after {
+  content: ''; position: absolute; z-index: 0;
+  border-radius: 50%; pointer-events: none;
+}
+/* Two blooms lift the flat band so it is not a dead rectangle: her 57% olive
+   in the top right, her magenta in the bottom left, both barely there. On the
+   dark band they read as light rather than as tint, which is why the olive is
+   the pale swatch and not the brand olive: at #9E9821 it went muddy. */
+.field::before {
+  /* top:-4rem, not -22rem: at -22 the circle's centre landed 1rem below the
+     hero's top edge, so the bloom was at full strength right on the join with
+     the nav and broke the single block of colour. Centred lower, its falloff
+     is already zero by the time it reaches the seam, drift and all. */
+  width: 46rem; height: 46rem; right: -15rem; top: -4rem;
+  background: radial-gradient(circle, rgba(173,166,117,.17), rgba(173,166,117,0) 64%);
+}
+.field::after {
+  width: 42rem; height: 42rem; left: -17rem; bottom: -21rem;
+  background: radial-gradient(circle, rgba(255,126,192,.13), rgba(255,126,192,0) 64%);
+}
+
+/* Fine film grain, so the empty space has a little texture up close. Slightly
+   stronger than the .05 the pale band used: the same noise over a dark surface
+   has far less to work with. */
+.grain {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  opacity: .09;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .field::before { animation: drift-a 34s ease-in-out infinite alternate; }
+  .field::after  { animation: drift-b 28s ease-in-out infinite alternate; }
+}
+@keyframes drift-a {
+  from { transform: translate3d(0,0,0)        scale(1);    }
+  to   { transform: translate3d(-4rem,3rem,0) scale(1.12); }
+}
+@keyframes drift-b {
+  from { transform: translate3d(0,0,0)       scale(1.08); }
+  to   { transform: translate3d(3rem,-2rem,0) scale(1);   }
+}
+
+/* ------------------------------------------------------ 16. Entrance */
+
+/* Staggered on load. Delay comes from an inline --d so the order is obvious
+   in the markup rather than hidden in nth-child rules. */
+.js .rise { opacity: 0; animation: rise .8s var(--ease) both; animation-delay: var(--d, 0s); }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .rise { opacity: 1; animation: none; }
+}
+
+/* Cards: the image leans in a touch on hover. */
+.card__media img { transition: transform .5s var(--ease); }
+.card:hover .card__media img,
+.card:focus-within .card__media img { transform: scale(1.045); }
+@media (prefers-reduced-motion: reduce) {
+  .card__media img, .card:hover .card__media img { transition: none; transform: none; }
+}
+
+/* -------------------------------------------------- 17. Reading progress */
+
+.progress {
+  position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 60;
+  background: var(--magenta);
+  transform: scaleX(0); transform-origin: 0 50%;
+}
+
+/* ------------------------------------------------------- 18. Case study */
+
+.case-hero { padding-top: var(--sp-7); }   /* bottom comes from the hand-off rule */
+.case-hero .eyebrow { justify-content: flex-start; }
+.case-hero h1 { font-size: var(--step-4); margin-bottom: var(--sp-4); }
+.case-hero .lede { font-size: var(--step-1); color: var(--ink-soft); max-width: 44rem; }
+
+.facts {
+  display: grid; gap: var(--sp-4); margin-top: var(--sp-6);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  border-top: 1px solid var(--rule); padding-top: var(--sp-4);
+}
+.facts dt {
+  font-size: var(--step--1); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: .3em;
+}   /* Recoloured on the band by 9c; this value is the fallback. */
+.facts dd { margin: 0; font-weight: 600; }
+
+.case-layout { display: grid; gap: var(--sp-6); grid-template-columns: 1fr; }
+@media (min-width: 64rem) {
+  .case-layout { grid-template-columns: 14rem 1fr; gap: var(--sp-7); }
+}
+/* Grid items default to min-width:auto, so the non-shrinking carousel slides
+   inside would push the whole column wider than the phone. */
+/* A grid item's automatic minimum size is its content's min-content size,
+   and once an <img> carries intrinsic width/height attributes that is the
+   full pixel width of the file. Without this the track refuses to shrink
+   and the page gains a horizontal scrollbar on a phone. */
+.case-layout > *, .about-grid > *, .hero__grid > *,
+.phones > *, .cards > *, .methods > *, .ds-strip > * { min-width: 0; }
+.slider, .slider__track { min-width: 0; }
+
+.rail { align-self: start; }
+@media (min-width: 64rem) { .rail { position: sticky; top: 5.5rem; } }
+.rail ol { list-style: none; padding: 0; display: grid; gap: .1rem; counter-reset: r; }
+.rail a {
+  display: block; padding: .45em 0 .45em .9em;
+  border-left: 2px solid var(--rule);
+  font-size: var(--step--1); font-weight: 600;
+  color: var(--ink-soft); text-decoration: none;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
+}
+.rail a:hover { color: var(--ink); border-left-color: var(--olive-57); }
+.rail a.is-current { color: var(--ink); border-left-color: var(--magenta); }
+@media (max-width: 64rem) { .rail { display: none; } }
+
+.case-body { max-width: 46rem; }
+.case-body > * + * { margin-top: var(--sp-4); }
+.case-body h2 {
+  font-size: var(--step-2); margin-top: var(--sp-7); scroll-margin-top: 5rem;
+}
+.case-body h2:first-child { margin-top: 0; }
+.case-body h3 { font-size: var(--step-1); margin-top: var(--sp-5); }
+.case-body p, .case-body li { color: var(--ink-soft); }
+.case-body strong { color: var(--ink); }
+.case-body ul, .case-body ol { padding-left: 1.15rem; display: grid; gap: .45rem; }
+.case-body li::marker { color: var(--olive); }
+
+/* Pull quote — participant voice */
+.quote {
+  margin-block: var(--sp-5);
+  padding: var(--sp-4) var(--sp-5);
+  border-left: 4px solid var(--magenta);
+  background: var(--magenta-wash);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.quote p { font-size: var(--step-1); color: var(--ink); line-height: 1.45; }
+.quote cite {
+  display: block; margin-top: var(--sp-2); font-style: normal;
+  font-size: var(--step--1); font-weight: 700; color: var(--ink-faint);
+}
+
+/* Highlight box — my read on the data, kept visually separate from it */
+.callout {
+  margin-block: var(--sp-5); padding: var(--sp-4) var(--sp-5);
+  background: var(--olive-wash); border-radius: var(--radius);
+  border: 1px solid var(--rule);
+}
+.callout h3 { margin: 0 0 var(--sp-2); font-size: var(--step-0); letter-spacing: 0; }
+.callout p { color: var(--ink-soft); font-size: var(--step--1); }
+
+/* Findings with a severity badge */
+.findings { display: grid; gap: var(--sp-3); padding: 0 !important; list-style: none; margin-top: var(--sp-4); }
+.finding {
+  display: grid; gap: var(--sp-1) var(--sp-4); align-items: start;
+  grid-template-columns: auto 1fr;
+  padding: var(--sp-4); border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper);
+}
+.finding__sev {
+  grid-row: span 2; display: grid; place-items: center;
+  width: 3rem; height: 3rem; border-radius: 50%;
+  font-weight: 800; font-size: var(--step-1); line-height: 1;
+  background: var(--olive-wash); color: var(--olive-deep);
+}
+.finding__sev span { display: block; font-size: .5rem; letter-spacing: .1em; font-weight: 700; }
+.finding--3 .finding__sev { background: var(--magenta-wash); color: var(--magenta-deep); }
+.finding h3 { margin: 0; font-size: var(--step-0); align-self: center; }
+.finding p:not(.finding__sev) { margin: 0; font-size: var(--step--1); grid-column: 2; }
+
+/* Satisfaction bars — real numbers from the raw data */
+.bars { display: grid; gap: var(--sp-3); margin-block: var(--sp-5); }
+.bar__label {
+  display: flex; justify-content: space-between; gap: var(--sp-3);
+  font-size: var(--step--1); font-weight: 700; color: var(--ink); margin-bottom: .35em;
+}
+.bar__track { height: 12px; background: var(--olive-wash); border-radius: 999px; overflow: hidden; }
+.bar__fill {
+  height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, var(--olive), var(--olive-57));
+  width: var(--v);
+  transform-origin: 0 50%;
+}
+.js .reveal .bar__fill { transform: scaleX(0); }
+.js .reveal.is-visible .bar__fill { transform: scaleX(1); transition: transform .9s var(--ease) .1s; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal .bar__fill, .js .reveal.is-visible .bar__fill { transform: none; transition: none; }
+}
+.bars__foot { font-size: var(--step--1); color: var(--ink-faint); }
+
+/* Stat row */
+.stats { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); margin-block: var(--sp-5); }
+.stat { border-top: 3px solid var(--olive); padding-top: var(--sp-2); }
+.stat b { display: block; font-size: var(--step-3); font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+.stat span { font-size: var(--step--1); color: var(--ink-soft); }
+
+/* Figures */
+.figure { margin-block: var(--sp-5); }
+.figure img { width: 100%; border-radius: var(--radius); border: 1px solid var(--rule); }
+.figure figcaption { margin-top: var(--sp-2); font-size: var(--step--1); color: var(--ink-faint); }
+
+/* Phone screens */
+.phones {
+  display: grid; gap: var(--sp-4); margin-block: var(--sp-5);
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  /* fan-in tilts each phone 7deg on the way in, and a rotated box has a wider
+     bounding box than the column it sits in, which on a narrow screen reached
+     past the viewport. clip, never hidden: hidden would make this a scroll
+     container and every view() timeline inside it would stop advancing. */
+  overflow: clip;
+  overflow-clip-margin: .75rem;
+}
+.phone { margin: 0; }
+.phone img {
+  width: 100%; border-radius: 18px; border: 1px solid var(--rule);
+  background: #fff; box-shadow: var(--shadow);
+}
+.phone figcaption { margin-top: var(--sp-2); font-size: var(--step--1); color: var(--ink-faint); }
+
+/* ---------------------------------------------------------- 19. Slider */
+
+/* Scroll-snap carousel. Without JS it is still a scrollable strip, which is
+   why the buttons are added by script rather than sitting in the markup. */
+.slider { position: relative; margin-block: var(--sp-5); }
+.slider__track {
+  display: flex; gap: var(--sp-4);
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scroll-behavior: smooth; padding-bottom: var(--sp-3);
+  scrollbar-width: thin;
+}
+@media (prefers-reduced-motion: reduce) { .slider__track { scroll-behavior: auto; } }
+.slider__track > * {
+  flex: 0 0 min(84%, 22rem); scroll-snap-align: start; margin: 0;
+}
+.slider__track img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: contain;
+  border-radius: var(--radius); border: 1px solid var(--rule);
+  background: var(--paper-alt); padding: .4rem;
+}
+.slider__track figcaption { margin-top: var(--sp-2); font-size: var(--step--1); color: var(--ink-faint); }
+.slider__nav { display: flex; align-items: center; gap: var(--sp-2); margin-top: var(--sp-2); }
+.slider__btn {
+  width: 42px; height: 42px; display: grid; place-items: center;
+  border: 2px solid var(--ink); border-radius: 50%;
+  background: transparent; cursor: pointer;
+  transition: background-color .18s var(--ease), color .18s var(--ease);
+}
+.slider__btn:hover:not(:disabled) { background: var(--ink); color: #fff; }
+.slider__btn:disabled { opacity: .3; cursor: default; }
+.slider__count { font-size: var(--step--1); color: var(--ink-faint); font-weight: 600; }
+
+/* -------------------------------------------------------- 20. Page nav */
+
+.pagenav { border-top: 1px solid var(--rule); padding-block: var(--sp-6); }
+/* The footer sits on a negative margin of --lift, so the block below the
+   pagenav has to clear that before it reads as space. */
+.pagenav { padding-bottom: calc(var(--sp-7) + var(--lift)); }
+.pagenav a {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--sp-4);
+  text-decoration: none; color: var(--ink);
+}
+.pagenav small {
+  display: block; font-size: var(--step--1); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint); margin-bottom: .2em;
+}
+.pagenav strong { font-size: var(--step-2); font-weight: 800; letter-spacing: -.02em; }
+.pagenav a:hover strong { color: var(--magenta-deep); }
+
+/* --------------------------------------------------- 23. Scroll storytelling
+
+   Two halves. The word-level heading reveal runs on a transition, because it
+   needs to fire once and stay put. Everything below it runs on a scroll-driven
+   timeline: progress is tied to where the element sits in the viewport rather
+   than to a clock, so it tracks the scrollbar exactly and reverses when you
+   scroll back up. That work happens on the compositor, not in a scroll handler.
+
+   Ranges are deliberately long. Alisha's note was that the first pass felt
+   "very light" -- the moves were small and finished almost as soon as they
+   started. Everything here travels further and is spread over more scroll, so
+   the motion is doing something you can actually watch rather than a flicker.
+
+   All of it is wrapped in @supports, so a browser without scroll timelines
+   simply renders the page as it did before rather than showing hidden content.
+   -------------------------------------------------------------------- */
+
+/* Headings assemble word by word out of a mask. */
+.js .heading-split .w {
+  display: inline-block; overflow: hidden; vertical-align: bottom;
+  padding-bottom: .14em; margin-bottom: -.14em;
+}
+.js .heading-split .w i {
+  display: inline-block; font-style: inherit;
+  opacity: 0; transform: translateY(115%) rotate(4deg);
+}
+.js .heading-split.is-visible .w i {
+  opacity: 1; transform: none;
+  transition: transform .9s cubic-bezier(.16, 1, .3, 1), opacity .5s linear;
+  transition-delay: calc(var(--i) * 65ms);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+
+    /* --- The hand-off ---------------------------------------------------
+       The panel below the hero rises into place and settles: wide corners
+       and a deep shadow while it is still travelling, tighter and calmer
+       once it lands.
+
+       The timeline belongs to the hero, not to the panel. A named timeline is
+       readable by an element's following siblings, and hanging it on the hero
+       means the rise is tied to the hero leaving rather than to the panel
+       arriving -- so it plays the same way on Work, where the panel is already
+       on screen when the page loads, as it does on a long case study.
+       -------------------------------------------------------------------- */
+    /* A named timeline only reaches descendants on its own. timeline-scope
+       raises it to <main> so the panel, which is the hero's next sibling
+       rather than its child, can read it. */
+    main { timeline-scope: --hero-tl; }
+    .hero, .case-hero { view-timeline-name: --hero-tl; }
+    .section--lift::before {
+      animation: panel-rise linear both;
+      animation-timeline: --hero-tl;
+      animation-range: exit 0% exit 62%;
+    }
+    @keyframes panel-rise {
+      from {
+        transform: translateY(2.5rem);
+        border-radius: 4.5rem 4.5rem 0 0;
+        box-shadow: 0 -30px 60px -22px rgba(26,26,26,.30);
+      }
+      to {
+        transform: translateY(0);
+        border-radius: var(--panel-r) var(--panel-r) 0 0;
+        box-shadow: 0 -18px 40px -26px rgba(26,26,26,.22);
+      }
+    }
+
+    /* The hero hands the page over: it pushes back into the distance as the
+       panel climbs over it, instead of just sliding off the top. */
+    .hero__grid,
+    .case-hero > .wrap {
+      animation: hero-exit linear both;
+      animation-timeline: view();
+      animation-range: exit -15% exit 100%;
+    }
+    @keyframes hero-exit {
+      to {
+        opacity: .28;
+        transform: translateY(-56px) scale(.94);
+        filter: blur(2.5px);
+      }
+    }
+
+    /* --- Arrivals -------------------------------------------------------- */
+
+    /* Figures and phone screens wipe up behind a curtain and settle out of a
+       slight zoom, so the picture arrives rather than appears. */
+    /* The wipe, without the zoom that used to ride along with it. Neither
+       .figure nor .phone clips, so a scale on the image spilled outside its
+       own frame; on a phone that was a horizontal scrollbar. It went unseen
+       because fan-in's old scale(.88) happened to cancel it (.88 x 1.14 = 1).
+       Removing that scale exposed this one. The clip-path already does the
+       work: the picture arrives rather than appears. */
+    .figure img,
+    .phone img {
+      animation: curtain-up linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 92%;
+    }
+
+    /* Card thumbnails get the curtain only: the transform belongs to the
+       hover lean, and an animation would win the cascade against it. */
+    .card__media img {
+      animation: curtain-up linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 90%;
+    }
+    @keyframes curtain-up {
+      from { clip-path: inset(0 0 100% 0); }
+      to   { clip-path: inset(0 0 0 0); }
+    }
+
+    /* Cards deal themselves onto the page, each one later than the last.
+       translate/scale rather than transform, again so :hover keeps its lift. */
+    .cards .card,
+    .methods .method {
+      animation: deal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 68%;
+    }
+    .cards .card:nth-child(2), .methods .method:nth-child(2) { animation-range: entry 9%  entry 77%; }
+    .cards .card:nth-child(3), .methods .method:nth-child(3) { animation-range: entry 18% entry 86%; }
+    .cards .card:nth-child(4), .methods .method:nth-child(4) { animation-range: entry 27% entry 95%; }
+    /* No scale here. A scale tied to a scroll range means the element is
+       still growing as long as you are still scrolling, and on a box this
+       big that reads as the layout breaking rather than as an arrival.
+       Travel and fade carry the motion instead. */
+    @keyframes deal-in {
+      from { opacity: 0; translate: 0 90px; }
+      to   { opacity: 1; translate: none;   }
+    }
+    /* The IntersectionObserver reveal is the fallback for browsers without
+       scroll timelines. Here it would just run underneath, so switch it off. */
+    .js .cards .card.reveal,
+    .js .methods .method.reveal { opacity: 1; transform: none; }
+
+    /* Phone screens fan into line. */
+    .phones .phone {
+      animation: fan-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 72%;
+    }
+    .phones .phone:nth-child(2) { animation-range: entry 9%  entry 81%; }
+    .phones .phone:nth-child(3) { animation-range: entry 18% entry 90%; }
+    .phones .phone:nth-child(4) { animation-range: entry 27% entry 99%; }
+    @keyframes fan-in {
+      from { opacity: 0; transform: translateY(70px) rotate(-7deg); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* The long reads: pull quotes, callouts and findings rise in sequence as
+       the article moves under you. */
+    .quote, .callout, .finding, .about-card, .task, .figure {
+      animation: slide-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 66%;
+    }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(72px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* The little olive marker above each section heading draws itself in. */
+    .eyebrow::before {
+      transform-origin: 0 50%;
+      animation: draw-in linear both;
+      animation-timeline: view();
+      animation-range: entry 12% entry 66%;
+    }
+    @keyframes draw-in {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+  }
+}
+
+/* A scroll timeline has no idea the page just loaded: an element sitting a
+   third of the way down the first screen is, as far as entry% is concerned,
+   a third of the way through its animation, so it would render half-faded on
+   arrival. main.js tags whatever is already visible and those elements skip
+   the scroll animation entirely -- their base state is the finished state, so
+   dropping the animation is all it takes. */
+.js .in-view-at-load,
+.js .in-view-at-load img { animation: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .heading-split .w i { opacity: 1; transform: none; transition: none; }
+}
+
+/* ------------------------------------------------------ 24. Page transitions
+
+   Moving between Home, Work and About is the other seam Alisha noticed, and
+   the browser can now animate it natively: the outgoing page settles back and
+   fades while the incoming one lifts into place. The nav keeps its own
+   transition name so the bar stays put through the swap instead of sliding
+   with the content.
+
+   Cross-document view transitions need a same-origin document, so this is live
+   on a hosted site and quietly inert when the files are opened straight from
+   the desktop. Nothing depends on it either way.
+   -------------------------------------------------------------------- */
+
+@view-transition { navigation: auto; }
+
+.nav { view-transition-name: site-nav; }
+
+::view-transition-old(root),
+::view-transition-new(root) { mix-blend-mode: normal; }
+
+::view-transition-old(root) { animation: page-out .4s cubic-bezier(.4, 0, 1, 1) both; }
+::view-transition-new(root) { animation: page-in .55s cubic-bezier(.16, 1, .3, 1) both; }
+
+@keyframes page-out {
+  to { opacity: 0; transform: translateY(-24px) scale(.97); }
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(36px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+
+/* ------------------------------------------------------- 25. Timeline beam
+
+   Alisha's career timeline, driven by one scroll-progress system rather than
+   six independent fade-ins.
+
+   The trick is view-timeline-inset. Each <li> owns a view timeline whose
+   scrollport has been collapsed to a thin band 55% of the way down the screen:
+   a reading line. Progress for a milestone is then literally "where is the
+   reading line inside this item", running from its own top edge -- which is
+   where its node sits -- to the top edge of the next one. So a single number
+   per item drives everything:
+
+     - the beam segment fills from this node down to the next
+     - the node lights up, grows and picks up a soft halo
+     - the date turns magenta, the job title darkens
+     - the block lifts its last few pixels into place
+
+   Each item's range opens half an item early and closes on the next node, so
+   neighbours are always mid-crossfade instead of switching. There is no step
+   between one milestone and the next, scrolling slowly moves it slowly, and
+   scrolling back up runs it backwards -- the scrollbar is the timeline, not a
+   clock.
+
+   Contrast is the constraint the emphasis has to work around. Fading inactive
+   items down, which is the obvious way to mute them, would drop --ink-soft and
+   --ink-faint straight through the AA line. So nothing here touches opacity:
+   the muted state is a real colour that passes on its own (--ink-soft at 7.2:1,
+   --ink-faint at 5.0:1) and the emphasis darkens from there.
+   ---------------------------------------------------------------------- */
+
+@supports (animation-timeline: view()) {
+
+  /* The travelled path, drawn over the grey track one segment per milestone.
+     The last item has no segment: the path ends at the final node. Full
+     height by default, so a browser with reduced motion on gets the completed
+     state rather than an empty track. */
+  .timeline li::after {
+    content: '';
+    position: absolute; left: -2px; top: 0;
+    width: 2px; height: 100%;
+    background: var(--olive);
+    transform-origin: 50% 0;
+    scale: 1 1;
+  }
+  .timeline li:last-child::after { display: none; }
+
+  /* The reading band. A soft olive wash that wipes across the milestone from
+     the rail outwards as you arrive on it, and slides off to the right as the
+     next one takes over -- a spotlight travelling down her career rather than
+     six separate reveals.
+
+     It is a background layer on the <li> itself rather than another
+     pseudo-element because both of them are already spoken for (the node and
+     the beam), and because a background wipes with background-size, which the
+     compositor handles without touching layout. Sized to nothing by default,
+     so it is simply absent for reduced motion and for browsers that do not do
+     scroll timelines. */
+  .timeline li {
+    --ms-band: calc(100% - var(--sp-6) + .5rem);
+    background-image: linear-gradient(90deg,
+                        rgba(158,152,33,.17) 0%,
+                        rgba(158,152,33,.02) 100%);
+    background-repeat: no-repeat;
+    background-size: 0 var(--ms-band);
+    /* right side only: rounding the left corners would bend the rail */
+    border-radius: 0 .55rem .55rem 0;
+  }
+
+  /* The rule under the job title, drawn left to right across the text itself.
+     fit-content keeps it the width of the words rather than the column. */
+  .timeline h3 { position: relative; width: fit-content; }
+  .timeline h3::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: -.16em; height: 2px;
+    background: linear-gradient(90deg, var(--magenta), var(--olive));
+    clip-path: inset(0 100% 0 0);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+
+    .timeline li {
+      view-timeline-name: --ms;
+      view-timeline-inset: 55% 44%;   /* the reading line */
+      --ms-range: cover -50% cover 100%;
+    }
+
+    /* 0% is half an item above the node, 33% is the node itself, 100% is the
+       next node. Every keyframe set below shares that clock. */
+
+    .timeline li::after {
+      animation: ms-beam linear both;
+      animation-timeline: --ms;
+      animation-range: var(--ms-range);
+    }
+    @keyframes ms-beam {
+      0%, 33% { scale: 1 0; }
+      100%    { scale: 1 1; }
+    }
+
+    .timeline li::before {
+      animation: ms-node linear both;
+      animation-timeline: --ms;
+      animation-range: var(--ms-range);
+    }
+    @keyframes ms-node {
+      0% {
+        border-color: var(--rule); background: var(--paper);
+        scale: 1; box-shadow: 0 0 0 0 rgba(237,1,140,0);
+      }
+      33%, 84% {
+        border-color: var(--magenta); background: var(--paper);
+        scale: 1.4; box-shadow: 0 0 0 7px rgba(237,1,140,.15);
+      }
+      100% {
+        border-color: var(--olive); background: var(--olive);
+        scale: 1; box-shadow: 0 0 0 0 rgba(237,1,140,0);
+      }
+    }
+
+    .timeline li > * {
+      animation: ms-lift linear both;
+      animation-timeline: --ms;
+      animation-range: var(--ms-range);
+    }
+    @keyframes ms-lift {
+      0%        { translate: 0 9px; }
+      33%, 100% { translate: 0 0; }
+    }
+
+    /* The date carries the "you are here" marker: magenta while this is the
+       milestone you are on, back to grey once you have passed it. */
+    .timeline li > .timeline__when {
+      animation: ms-lift linear both, ms-when linear both;
+      animation-timeline: --ms, --ms;
+      animation-range: var(--ms-range), var(--ms-range);
+    }
+    @keyframes ms-when {
+      0%       { color: var(--ink-soft); }
+      33%, 84% { color: var(--magenta-deep); }
+      100%     { color: var(--ink-soft); }
+    }
+
+    /* The job titles are deliberately left alone. Muting the ones you have not
+       scrolled to yet is the obvious way to show state, and it is the wrong
+       call here: this is her career history, and someone skimming it should be
+       able to read every role at full strength without scrolling through them
+       one at a time. The node, the beam and the date carry the state instead. */
+
+    /* Band and rule run slightly behind the node so the order reads: the node
+       lights, then the entry fills in behind the text. Both are on the same
+       --ms clock as everything else, so they are scrub-driven, not triggered. */
+    .timeline li {
+      animation: ms-wipe linear both;
+      animation-timeline: --ms;
+      animation-range: var(--ms-range);
+    }
+    @keyframes ms-wipe {
+      0%,  14% { background-size: 0    var(--ms-band); background-position: 0%   0; }
+      50%, 76% { background-size: 100% var(--ms-band); background-position: 0%   0; }
+      100%     { background-size: 0    var(--ms-band); background-position: 100% 0; }
+    }
+
+    .timeline h3::after {
+      animation: ms-rule linear both;
+      animation-timeline: --ms;
+      animation-range: var(--ms-range);
+    }
+    @keyframes ms-rule {
+      0%,  18% { clip-path: inset(0 100% 0 0); }
+      54%, 78% { clip-path: inset(0 0 0 0); }
+      100%     { clip-path: inset(0 0 0 100%); }
+    }
+  }
+}
+
+/* --------------------------------------------------------------- 14. Print */
+
+@media print {
+  .nav, .footer__note, .btn, .progress, .slider__nav { display: none; }
+  .cta__fill, .cta__arrow { display: none; }
+  .cta { border-color: #000; color: #000; box-shadow: none; background: none; }
+  body { color: #000; }
+  /* Scroll reveals never fire when printing, so force everything visible. */
+  .js .reveal, .js .rise { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .js .heading-split .w i { opacity: 1 !important; transform: none !important; }
+  .figure img, .phone img, .card__media img, .phones .phone,
+  .quote, .callout, .finding, .timeline li, .about-card, .task, .figure,
+  .cards .card, .methods .method,
+  .hero__grid, .case-hero > .wrap, .eyebrow::before, .section--lift::before {
+    animation: none !important; opacity: 1 !important;
+    transform: none !important; clip-path: none !important;
+    translate: none !important; scale: none !important; filter: none !important;
+  }
+  .section--lift { margin-top: 0; }
+  /* The band is a dark surface on screen; on paper it has to be nothing. */
+  .hero, .case-hero, .hero h1, .case-hero h1, .facts dd,
+  .hero__lede, .case-hero .lede, .hero .eyebrow, .case-hero .eyebrow,
+  .facts dt, .hero__kicker {
+    background: none !important; color: #000 !important;
+  }
+  .hero .accent { background: none !important; }
+  .footer { margin-top: 0; border-radius: 0; background: none; color: #000; }
+  .section--lift::before { display: none; }
+  .field::before, .field::after, .grain, .timeline li::after { display: none; }
+  .timeline li::before { animation: none !important; scale: 1 !important; }
+  .timeline li { background-image: none !important; animation: none !important; }
+  .timeline h3::after { display: none; }
+  .slider__track { overflow: visible; flex-wrap: wrap; }
+  .case-layout { display: block; }
+  .rail { display: none; }
+  a::after { content: ' (' attr(href) ')'; font-size: .85em; }
+}
+
+/* --------------------------------------------------------- 21. Task blocks */
+
+.task { border-top: 1px solid var(--rule); padding-top: var(--sp-5); }
+.task + .task { margin-top: var(--sp-6) !important; }
+.task__head {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: var(--sp-3);
+}
+.task__head h3 { margin: 0; }
+.task__score { font-weight: 800; font-size: var(--step-1); line-height: 1; white-space: nowrap; }
+.task__score em { font-style: normal; color: var(--olive-deep); }  /* --olive is 2.9:1 on the warm paper */
+.task__score small { display: block; font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-top: .35em; }
+
+.split { display: grid; gap: var(--sp-4); grid-template-columns: 1fr; }
+@media (min-width: 40rem) { .split { grid-template-columns: 1fr 1fr; gap: var(--sp-5); } }
+.split h3, .split h4 {
+  font-size: var(--step--1); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint); margin-bottom: .6em;
+  margin-top: 0;
+}
+.split ul { margin: 0; }
+
+/* Small print for method notes */
+.note { font-size: var(--step--1); color: var(--ink-faint); }
+
+/* ----------------------------------------------------------- 22. Timeline */
+
+.timeline { list-style: none; padding: 0; margin-top: var(--sp-6); display: grid; gap: 0; }
+.timeline li {
+  position: relative; padding: 0 0 var(--sp-6) var(--sp-5);
+  border-left: 2px solid var(--rule);
+}
+.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.timeline li::before {
+  content: ''; position: absolute; left: -7px; top: .45em;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--paper); border: 3px solid var(--olive);
+}
+.timeline li:first-child::before { border-color: var(--magenta); }
+.timeline__when {
+  font-size: var(--step--1); font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-faint); margin-bottom: .2em;
+}
+.timeline h3 { font-size: var(--step-1); margin-bottom: .1em; }
+.timeline__org { font-weight: 600; color: var(--magenta-deep); margin-bottom: var(--sp-2); }
+/* Only one of these links anywhere: the reporting job, out to her clips. It
+   keeps the magenta the rest of the line already carries and picks up a rule,
+   so it does not read as a different kind of thing from its neighbours. */
+.timeline__org a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.timeline p { color: var(--ink-soft); max-width: 40rem; }
+
+/* Two-up about layout */
+.about-grid { display: grid; gap: var(--sp-6); grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 58rem) { .about-grid { grid-template-columns: 1fr 20rem; gap: var(--sp-7); } }
+.about-grid .prose { max-width: 40rem; }
+.about-side { display: grid; gap: var(--sp-4); }
+/* Her ask: colour on these three headings, and a marker on every line.
+   --magenta-deep is 5.6:1 on --paper, so the accent is real type, not decoration. */
+.about-side h3 { font-size: var(--step-0); margin-bottom: .5em; color: var(--magenta-deep); }
+.about-side ul { list-style: none; padding: 0; display: grid; gap: .45rem; font-size: var(--step--1); color: var(--ink-soft); }
+.about-side li { position: relative; padding-left: 1.05rem; }
+.about-side li::before {
+  content: ''; position: absolute; left: 0; top: .62em;
+  width: .38rem; height: .38rem; border-radius: 1px;
+  background: var(--olive-deep);
+  rotate: 45deg;
+  translate: 0 -50%;
+}
+.about-card { padding: var(--sp-4); border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper); }
+
+/* ------------------------------------------- 27. Design system strip (home)
+
+   Three plates from the Allynne kit on the landing page. Deliberately not a
+   fourth case study card: it answers "can she design as well as research"
+   without competing with the three real studies above it.
+   ---------------------------------------------------------------------- */
+.ds-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--sp-4);
+  margin-top: var(--sp-5);
+}
+.ds-strip img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--olive-wash);
+}
+
+/* ------------------------------------------------ 28. About photo deck
+
+   Her reference was a coverflow: five portraits fanned sideways with the
+   middle one lifted. Fanned horizontally the arch stops being an arch, and a
+   five-card stack is a lot of chrome for one person's headshots, so this is
+   the same idea folded into depth instead of width. One arch, cards stacked
+   behind it, each turn brings the next one forward.
+
+   The cards are real list items with real buttons, so it is keyboard operable
+   and a screen reader gets a list rather than a pile of divs.
+   ---------------------------------------------------------------------- */
+
+.deck-wrap { display: grid; gap: var(--sp-3); justify-items: center; }
+@media (min-width: 60rem) { .deck-wrap { justify-items: stretch; } }
+
+.deck {
+  position: relative;
+  display: block;              /* not the grid it inherits from .hero__portrait */
+  list-style: none;
+  padding: 0;
+  perspective: 1100px;
+}
+
+.deck__card {
+  position: absolute; inset: 0;
+  /* The arch gets its height from .hero__portrait's aspect-ratio, so every
+     card can be absolute. Leaving the first in flow made it shrink to its
+     own content while cards 2 and 3 filled the frame. */
+  display: grid; place-items: center;
+  padding: var(--sp-4);
+  text-align: center;
+  background: var(--paper);
+  border-radius: inherit;
+  overflow: clip;
+  backface-visibility: hidden;
+  transform-origin: 50% 85%;
+}
+.deck__card img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Depth, not distance. Three steps back and then out of sight. */
+.deck__card[data-pos="0"] { z-index: 4; opacity: 1;   translate: 0 0;      scale: 1;    rotate: x 0deg;  }
+.deck__card[data-pos="1"] { z-index: 3; opacity: .55; translate: 0 -3.5%;  scale: .935; rotate: x 6deg;  }
+.deck__card[data-pos="2"] { z-index: 2; opacity: .28; translate: 0 -6.5%;  scale: .875; rotate: x 10deg; }
+.deck__card[data-pos="3"] { z-index: 1; opacity: 0;   translate: 0 -8.5%;  scale: .84;  rotate: x 12deg; }
+/* Leaving: forward and past the reader, which is what sells "flipped away". */
+.deck__card[data-pos="out"] { z-index: 5; opacity: 0; translate: 0 9%; scale: 1.06; rotate: x -14deg; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .deck__card {
+    transition: opacity .42s ease, translate .42s cubic-bezier(.22,.61,.36,1),
+                scale .42s cubic-bezier(.22,.61,.36,1), rotate .42s cubic-bezier(.22,.61,.36,1);
+  }
+}
+
+.deck__controls { display: flex; align-items: center; gap: var(--sp-3); justify-content: center; }
+.deck__btn {
+  width: 2.4rem; height: 2.4rem; flex: none;
+  display: grid; place-items: center;
+  border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--paper); color: var(--ink);
+  cursor: pointer;
+}
+.deck__btn:hover { border-color: var(--ink); }
+.deck__count { font-size: var(--step--1); color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+@media print {
+  .deck__controls { display: none; }
+  .deck__card { position: relative; opacity: 1 !important; translate: none !important; scale: none !important; rotate: none !important; }
+  .deck__card:not(:first-child) { display: none; }
+}
+
+/* --------------------------------------------------------- 29. The dark band
+
+   Nav and every hero sit on --ink-deep-olive, the exact value the footer
+   already uses, so the page opens and closes on the same surface and the work
+   itself lives in the light middle between them.
+
+   Chosen 2026-08-20. Alisha asked whether to go back to the olive header or
+   take it dark, and dark is the version that makes her magenta an accent
+   instead of a competitor: on the olive the two colours sat at similar weight
+   and argued. Here the band is neutral-warm and the magenta is the only chroma
+   in it. The olive is not gone -- it carries the eyebrow markers, the
+   case-study accents, the Allynne kit and the footer family.
+
+   Everything below is a colour swap. No layout, no motion, nothing structural,
+   so going back to a pale band is a matter of putting a light value in
+   --hero-band and deleting this block.
+
+   It lives at the end of the file on purpose. It recolours pieces defined all
+   the way through it -- the nav in 8, the facts list in 18, the photo deck in
+   28 -- and most of those rules carry the same specificity, so the only thing
+   deciding the winner is source order. Moving this block up silently hands the
+   case-study ledes back to --ink-soft, which is 1.4:1 here.
+
+   Measured on #332B1A: --band-ink 12.9:1, --band-ink-soft 8.2:1,
+   --band-accent 6.0:1, --band-marker 5.7:1. AA everywhere, AAA on the type
+   that carries the page.
+   ------------------------------------------------------------------------ */
+
+.nav, .hero, .case-hero { color: var(--band-ink); }
+.nav__brand, .nav__brand:hover,
+.hero h1, .case-hero h1,
+.facts dd { color: var(--band-ink); }
+
+.hero__lede, .case-hero .lede,
+.hero .eyebrow, .case-hero .eyebrow,
+.facts dt, .deck__count { color: var(--band-ink-soft); }
+
+.hero__kicker { color: var(--band-accent); }
+.hero .eyebrow::before, .case-hero .eyebrow::before { background: var(--band-marker); }
+.facts { border-top-color: var(--band-rule); }
+
+/* The pink wash under "where they get stuck" has to work harder on a dark
+   surface: at the .22 the pale band used it simply disappeared. .42 puts the
+   wash at 2.2:1 against the band, which is enough to read as a highlight.
+   The phrase itself steps up from --band-ink-soft to --band-ink at the same
+   time, because the lede grey on that wash is only 3.7:1 and the phrase is
+   20px at the narrow end of the clamp. Cream on it is 5.8:1. */
+.hero .accent {
+  color: var(--band-ink);
+  background: linear-gradient(transparent 62%, rgba(255,126,192,.42) 62%);
+}
+
+/* --magenta-deep is only 2.4:1 against this band, so the pill's own shape needs
+   an edge. Same ring the footer CTA already uses, for the same reason. */
+.hero .btn { box-shadow: 0 0 0 1px rgba(247,246,236,.28); }
+.hero .btn--ghost {
+  color: var(--band-ink); border-color: rgba(247,246,236,.5); box-shadow: none;
+}
+.hero .btn--ghost:hover {
+  background: var(--band-ink); color: var(--ink-deep-olive);
+  border-color: var(--band-ink);
+}
+
+/* Nav. The sweep's last panel was --ink, which is invisible on a dark bar, so
+   it lands cream now and the label goes dark: the same gesture inverted rather
+   than a different one. */
+.nav__links a { color: var(--band-ink); }
+.nav__sweep::after { background: var(--night-cream); }
+.nav__txt--in { color: var(--ink-deep-olive); }
+
+@media (hover: hover) and (pointer: fine) and (min-width: 46.01rem) {
+  .nav__links a:hover .nav__txt,
+  .nav__links a:focus-visible .nav__txt { color: var(--ink-deep-olive); }
+}
+@media (max-width: 46rem) {
+  .nav__toggle { color: var(--band-ink); border-color: rgba(247,246,236,.45); }
+  .nav__links  { border-bottom-color: rgba(247,246,236,.18); }
+  .nav__links a { border-bottom-color: rgba(247,246,236,.16); }
+}
+
+/* The focus ring is --magenta-deep, which is 2.4:1 here. On the band it uses
+   the lifted magenta instead, so a keyboard user can still see where they are. */
+.nav a:focus-visible, .hero a:focus-visible, .case-hero a:focus-visible,
+.nav button:focus-visible, .case-hero button:focus-visible {
+  outline-color: var(--band-accent);
+}

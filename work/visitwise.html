@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VisitWise — research &amp; design — Alisha Jordan</title>
+<meta name="description" content="VisitWise, a mobile app for preparing for healthcare appointments. Graduate capstone: survey research, heuristic review against Nielsen and the 21st Century IDEA Act, and moderated usability testing.">
+<link rel="icon" href="../assets/img/favicon.png" type="image/png">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" role="presentation"></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="../index.html">
+      <img src="../assets/img/allynne-logo.png" alt="" width="34" aria-hidden="true">
+      Alisha Jordan
+    </a>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <span class="visually-hidden">Menu</span>
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+        <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+
+    <nav aria-label="Main">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="../index.html"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">Home</span><span class="nav__txt nav__txt--in" aria-hidden="true">Home</span></a></li>
+        <li><a href="../work.html" aria-current="true"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">Work</span><span class="nav__txt nav__txt--in" aria-hidden="true">Work</span></a></li>
+        <li><a href="../about.html"><span class="nav__sweep" aria-hidden="true"></span><span class="nav__txt">About</span><span class="nav__txt nav__txt--in" aria-hidden="true">About</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ------------------------------------------------------------- Intro -->
+  <section class="case-hero field">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow rise" style="--d:.05s">Case study &middot; Research &amp; design</p>
+      <h1 class="rise" style="--d:.12s">VisitWise</h1>
+      <p class="lede rise" style="--d:.22s">
+        A medical appointment is short, dense, and stressful, and most people
+        prepare for one in their phone notes. VisitWise puts the preparing, the
+        asking and the remembering in one place. This was my graduate capstone,
+        and the only project here where I was designing as well as researching.
+      </p>
+
+      <dl class="facts rise" style="--d:.3s">
+        <div>
+          <dt>My role</dt>
+          <dd>Interviewer &amp; designer</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Team 4, three graduate students</dd>
+        </div>
+        <div>
+          <dt>Course</dt>
+          <dd>HCI 594</dd>
+        </div>
+        <div>
+          <dt>Methods</dt>
+          <dd>Survey, heuristic review, moderated usability testing</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+
+  <section class="section section--lift">
+    <div class="wrap case-layout">
+
+      <!-- ------------------------------------------------------- Side rail -->
+      <aside class="rail" aria-label="On this page">
+        <ol>
+          <li><a href="#problem">The problem</a></li>
+          <li><a href="#goals">What we set out to do</a></li>
+          <li><a href="#prototype">What we built</a></li>
+          <li><a href="#research">How we tested it</a></li>
+          <li><a href="#findings">What we found</a></li>
+          <li><a href="#changes">What changed</a></li>
+          <li><a href="#reflection">Looking back</a></li>
+        </ol>
+      </aside>
+
+      <!-- ------------------------------------------------------------ Body -->
+      <div class="case-body">
+
+        <h2 id="problem">The problem</h2>
+        <p>
+          Healthcare appointments are brief and information dense. In a short window a
+          patient has to describe symptoms, ask what they came to ask, and hold on to
+          what the provider tells them. Most people prepare for that using whatever is
+          nearest: phone notes, a paper list, a text thread, a patient portal, or memory.
+        </p>
+        <p>
+          Because the information is scattered, three things go wrong. Questions get
+          forgotten. Symptoms get left out. And what the provider actually said gets
+          remembered wrong, or not at all.
+        </p>
+
+        <div class="callout">
+          <h3>What the literature already knew</h3>
+          <p>
+            Structured pre-visit planning helps patients communicate more effectively
+            with providers. Question prompt lists reduce missed concerns. And patients
+            frequently forget medical advice after an appointment, particularly under
+            stress or information overload. The gap was not knowing that preparation
+            helps. It was that nothing supports doing it.
+          </p>
+        </div>
+
+        <p>
+          The competition is the Notes app, paper, and portal messages. All three are
+          unstructured, none of them are built for this, and none of them let a caregiver
+          help. That gave us three design principles to hold the project to:
+          <strong>prepare before the appointment, organize the questions, support recall
+          after the visit.</strong>
+        </p>
+
+        <h2 id="goals">What we set out to do</h2>
+
+        <div class="callout">
+          <h3>1. Reduce the effort of preparing</h3>
+          <p>
+            Measured by task completion, ease ratings, participant feedback, and
+            hesitation we could observe during testing. This one never changed.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>2. Improve communication with providers</h3>
+          <p>
+            Measured by whether people could prepare questions and reach them during the
+            appointment. The goal stayed, but we narrowed the scope on purpose: helping a
+            patient organize and reach their own questions, rather than trying to solve
+            patient and provider communication in general.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>3. Support recall afterwards</h3>
+          <p>
+            Measured by whether people could record what the provider said, see which
+            questions they had covered, and find the visit again later.
+          </p>
+        </div>
+
+        <h2 id="prototype">What we built</h2>
+        <p>
+          An interactive high-fidelity mobile prototype covering appointment preparation,
+          question organization, medication tracking, appointment notes, and caregiver
+          collaboration. The core of it is Appointment Mode: the screen you open while
+          you are actually sitting in the room.
+        </p>
+
+        <div class="phones">
+          <figure class="phone">
+            <img src="../assets/img/visitwise/01-home.png" alt="VisitWise welcome screen and home screen, showing an upcoming visit with counts for questions, comments and medications." loading="lazy" width="894" height="946">
+            <figcaption>Home: the next visit, with everything prepared for it counted in one place.</figcaption>
+          </figure>
+          <figure class="phone">
+            <img src="../assets/img/visitwise/02-appointment-mode.png" alt="VisitWise Appointment Mode showing question two of five with progress dots and a patient notes field, and the saved confirmation." loading="lazy" width="892" height="944">
+            <figcaption>Appointment Mode: one question at a time, progress visible, notes by typing or voice.</figcaption>
+          </figure>
+          <figure class="phone">
+            <img src="../assets/img/visitwise/03-summary.png" alt="VisitWise visit summary with tabs for summary, questions and follow up, and the saved confirmation." loading="lazy" width="902" height="956">
+            <figcaption>After the visit: the summary, the questions you asked, and what to follow up on.</figcaption>
+          </figure>
+        </div>
+
+        <p style="margin-top:var(--sp-5)">
+          <a class="link-arrow" href="https://www.figma.com/proto/B0X9bGBo1Vdrweqk5bz4lt/VisitWise--Copy-?node-id=277-2&amp;t=BoGUFXJgJBJTPnw9-1" rel="noopener">
+            Open the round 2 prototype <span aria-hidden="true">&rarr;</span>
+          </a>
+          <br>
+          <a class="link-arrow" href="https://www.figma.com/proto/B0X9bGBo1Vdrweqk5bz4lt/VisitWise--Copy-?node-id=201-2&amp;t=BoGUFXJgJBJTPnw9-1" rel="noopener" style="margin-top:var(--sp-2); display:inline-flex">
+            Open the round 1 prototype <span aria-hidden="true">&rarr;</span>
+          </a>
+        </p>
+
+        <h2 id="research">How we tested it</h2>
+        <p>
+          Three methods, in order, each one narrowing what the next one had to look at.
+        </p>
+
+        <ol>
+          <li>
+            <strong>A survey,</strong> to work out what people actually do now and which
+            features were worth building. It ran behind a screener: over 18, and at least
+            one doctor visit in the past year. Twelve people qualified and completed it.
+          </li>
+          <li>
+            <strong>An expert evaluation,</strong> a heuristic review of the first
+            prototype against Jakob Nielsen&rsquo;s heuristics, coupled with the eight
+            standards set out in the 21st Century IDEA Act.
+          </li>
+          <li>
+            <strong>Moderated usability testing,</strong> round one, with three
+            participants. Each was given an appointment scenario and asked to use
+            Appointment Mode while thinking aloud.
+          </li>
+        </ol>
+
+        <p class="note">
+          Twelve survey responses and three usability sessions are small samples. We
+          treated every result as directional and said so in the report rather than
+          writing it up as though it settled anything.
+        </p>
+
+        <h2 id="findings">What we found</h2>
+
+        <p>
+          The survey confirmed the premise. People are using phone notes, portals, paper
+          and memory, in combination, and none of it is joined up. That was enough to
+          justify one centralized place to prepare questions, prioritize concerns, record
+          answers and organize next steps, and enough to cut everything that was not that.
+        </p>
+
+        <p>
+          The heuristic review liked the things that were easy to like: familiar
+          terminology, recognition rather than recall, a simple visual design. What it
+          flagged was structural, and it flagged the same things the participants later
+          hit: system feedback, user control, consistency, error prevention,
+          accessibility, and navigation. Most of all, nothing confirmed to the user that
+          what they had just done had worked.
+        </p>
+
+        <div class="task">
+          <div class="task__head">
+            <h3>Round 1 &middot; Use Appointment Mode</h3>
+            <p class="task__score">3.17<em>/5</em><small>Mean of 3</small></p>
+          </div>
+          <div class="split">
+            <div>
+              <h4>Worked</h4>
+              <ul>
+                <li>All three participants completed the task.</li>
+                <li>Two found Appointment Mode without much trouble.</li>
+                <li>The vocabulary was familiar. Nobody had to be told what the app was for.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Did not</h4>
+              <ul>
+                <li>One participant could not work out where to begin at all.</li>
+                <li>Status and controls looked identical. One participant read
+                    &ldquo;Tomorrow&rdquo; as a reminder rather than as a button.</li>
+                <li>Button wording, moving between questions, and seeing how far through
+                    you were all came up unprompted.</li>
+                <li>Nothing confirmed that what had been entered was saved.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          Everyone finished, and the average ease rating was 3.17 out of 5. Those two
+          facts sitting next to each other are the finding: the task was completable and
+          it was not easy, and if we had only counted completions we would have called it
+          a pass.
+        </p>
+
+        <div class="callout">
+          <h3>The requests we did not build</h3>
+          <p>
+            Individual participants asked for chat, Apple Health integration, and tags or
+            filters. None of it recurred across sessions, so we wrote it down as future
+            opportunity rather than letting one person&rsquo;s request expand the scope
+            while the core experience was still confusing people.
+          </p>
+        </div>
+
+        <h2 id="changes">What changed</h2>
+        <p>
+          Round two went entirely on the existing experience. No new features.
+        </p>
+
+        <div class="callout">
+          <h3>1. Make starting obvious</h3>
+          <p>
+            A clear Start Appointment action, so the one participant who did not know
+            where to begin would have somewhere to begin.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>2. Separate status from action</h3>
+          <p>
+            Information and controls stopped looking the same. This is the
+            &ldquo;Tomorrow&rdquo; problem, and it was the most expensive thing we found.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>3. Show progress</h3>
+          <p>
+            The active question is prominent, and question two of five says so. You can
+            see where you are without counting.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>4. Confirm the save</h3>
+          <p>
+            An explicit confirmation after entering notes, because the heuristic review
+            and the participants independently asked for the same thing.
+          </p>
+        </div>
+
+        <h2 id="reflection">Looking back</h2>
+        <p>
+          The number I keep coming back to is 3.17. On my last study every task scored
+          above four and I had to go digging through transcripts to find what was wrong.
+          Here the score and the sessions agreed with each other. A mediocre rating you
+          can explain is worth more than a good one you cannot.
+        </p>
+        <p>
+          The lesson underneath it was about status against action. We wrote
+          &ldquo;Tomorrow&rdquo; as a label. Someone read it as a reminder and waited for
+          the app to do something. Nothing on that screen distinguished information from
+          a control, and no amount of visual polish fixes that: it is a decision you make
+          before you start styling anything.
+        </p>
+        <p>
+          What I would fix is the sample. Twelve survey responses and three sessions are
+          enough to point at a problem and not enough to size it. With more time I would
+          widen both, test the whole appointment rather than one flow through it, and
+          look properly at the caregiver collaboration and privacy questions we parked.
+        </p>
+
+        <div class="callout">
+          <h3>References</h3>
+          <p>
+            Grant, R. W., et al. (2019). Visit planning using a waiting room health IT
+            tool. <em>The Annals of Family Medicine</em>, 17(2), 141&ndash;149.<br>
+            Sansoni, J. E., Grootemaat, P., &amp; Duncan, C. (2015). Question prompt lists
+            in health consultations: A review. <em>Patient Education and Counseling</em>,
+            98(12), 1454&ndash;1464.<br>
+            Watson, P. W. B., &amp; McKinstry, B. (2009). A systematic review of
+            interventions to improve recall of medical advice.
+            <em>Journal of the Royal Society of Medicine</em>, 102(6), 235&ndash;243.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <nav class="pagenav" aria-label="Next case study">
+    <div class="wrap">
+      <a href="finity.html">
+        <span>
+          <small>Next case study</small>
+          <strong>Finity usability testing</strong>
+        </span>
+        <span aria-hidden="true" style="font-size:var(--step-2)">&rarr;</span>
+      </a>
+    </div>
+  </nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <h2>Let&rsquo;s talk</h2>
+      <p style="color:#D8D8D8; max-width:32rem;">
+        I&rsquo;ve just finished my M.S. in Human-Computer Interaction at DePaul
+        and I&rsquo;m looking for UX research and design roles. If you have something
+        you want understood properly, I&rsquo;d like to hear about it.
+      </p>
+    </div>
+    <div>
+      <ul class="footer__contact">
+        <li><a class="cta cta--primary" href="mailto:aaj4298@gmail.com">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">Email me</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a class="cta" href="https://www.linkedin.com/in/alishajordan326" rel="noopener">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">LinkedIn</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a class="cta" href="../assets/docs/alisha-jordan-resume.pdf">
+          <span class="cta__fill" aria-hidden="true"></span>
+          <span class="cta__label">R&eacute;sum&eacute; (PDF)</span><svg class="cta__arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path class="cta__shaft" d="M15 5H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cta__head" d="M13.5 1 17.5 5l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+      </ul>
+      <p class="footer__addr">or write to <a href="mailto:aaj4298@gmail.com">aaj4298@gmail.com</a></p>
+    </div>
+  </div>
+  <div class="wrap footer__note">
+    <span>&copy; 2026 Alisha Jordan</span>
+    <span>Built on the Allynne design system</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
