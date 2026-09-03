@@ -55,12 +55,15 @@
 
       <!-- Photo deck. Add or remove <li class="deck__card"> items freely: the
            script reads however many are here, and hides the controls if there
-           is only one. Swap each placeholder <p> for an <img>. -->
+           is only one. Crops are 3:4 to match the arch. -->
       <div class="deck-wrap rise" style="--d:.3s">
         <ul class="arch hero__portrait deck" data-deck>
-          <li class="deck__card" style="background:var(--paper)"><p>Portrait one<br><span style="color:var(--ink-faint)">photo coming soon</span></p></li>
-          <li class="deck__card" style="background:var(--olive-wash)"><p>Portrait two<br><span style="color:var(--ink-faint)">photo coming soon</span></p></li>
-          <li class="deck__card" style="background:var(--magenta-wash)"><p>Portrait three<br><span style="color:var(--ink-faint)">photo coming soon</span></p></li>
+          <li class="deck__card"><img src="assets/img/portrait/deck-1.jpg" width="1000" height="1333"
+              alt="Alisha Jordan seated, in a black and white studio portrait."></li>
+          <li class="deck__card"><img src="assets/img/portrait/deck-2.jpg" width="1000" height="1333" loading="lazy"
+              alt="Alisha Jordan balancing a stack of design and development books on her head, looking up at them."></li>
+          <li class="deck__card"><img src="assets/img/portrait/deck-3.jpg" width="1000" height="1333" loading="lazy"
+              alt="Alisha Jordan holding a bouquet of roses on her graduation day."></li>
         </ul>
 
         <div class="deck__controls" data-deck-controls hidden>

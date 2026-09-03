@@ -419,6 +419,11 @@ a:hover { color: var(--ink); }
   .hero__portrait { width: min(100%, 17rem); margin-inline: auto; }
 }
 .hero__portrait img { width: 100%; height: 100%; object-fit: cover; }
+/* The padding above is breathing room for the "photo coming soon" placeholder.
+   Once a real photo is in, it reads as a cream mat that squares off the bottom
+   corners and fights the arch, so a frame holding an image loses it. The
+   placeholder rules stay put for anyone who swaps a photo back out. */
+.hero__portrait:has(img), .deck__card:has(img) { padding: 0; }
 
 /* ------------------------------------------------- 9b. Section hand-off
 
